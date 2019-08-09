@@ -27,7 +27,7 @@ public class UserEntity implements Serializable {
     
     @Id
     @Column(name = "user_id")
-    private Long id;    
+    private String id;    
     @Column(name = "email", length = 255, unique = true, nullable = false)
     private String email;    
     @Column(name = "user_name", length = 255, unique = true)
@@ -69,11 +69,11 @@ public class UserEntity implements Serializable {
     public UserEntity() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

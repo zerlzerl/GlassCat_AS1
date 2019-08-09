@@ -5,6 +5,7 @@
  */
 package glasscat.as1.entity;
 
+import glasscat.as1.util.IDUtil;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class ItemEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "item_id")
-    private Long id;
+    private String id;
     @Column(name = "title", length = 255, nullable = false)
     private String title;
     @Column(name = "image_url", length = 2047)
@@ -57,11 +58,11 @@ public class ItemEntity implements Serializable {
     public ItemEntity() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

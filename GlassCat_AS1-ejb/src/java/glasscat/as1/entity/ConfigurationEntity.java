@@ -5,6 +5,7 @@
  */
 package glasscat.as1.entity;
 
+import glasscat.as1.util.IDUtil;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,21 +30,25 @@ public class ConfigurationEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "config_id")
-    private Long id;
+    private String id;
     @Column(name = "type", length = 255, nullable = false)
     private String configType;
     @Column(name = "config_name", length = 255, nullable = false)
     private String configName;
     @Column(name = "value", length = 255, nullable = false)
     private String value;
-    public Long getId() {
+
+    public ConfigurationEntity() {
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
-
+    
     public String getConfigType() {
         return configType;
     }

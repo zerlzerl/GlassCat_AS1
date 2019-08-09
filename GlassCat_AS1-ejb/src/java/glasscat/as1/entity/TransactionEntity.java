@@ -25,9 +25,9 @@ public class TransactionEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "transaction_id")
-    private Long transactionId;
+    private String transactionId;
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
     @Column(name = "transaction_datetime")
     private Date transactionDatetimeDate;
     @Column(name = "extend_1", length = 1023)
@@ -40,19 +40,19 @@ public class TransactionEntity implements Serializable {
     public TransactionEntity() {
     }
 
-    public Long getTransactionId() {
+    public String getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(Long transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

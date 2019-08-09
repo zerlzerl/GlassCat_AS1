@@ -5,6 +5,7 @@
  */
 package glasscat.as1.entity;
 
+import glasscat.as1.util.IDUtil;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class RatingEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "rating_id")
-    private Long ratingId;
+    private String ratingId;
     @Column(name = "user_id")
     private Long userId;
     @Column(name = "item_id")
@@ -48,15 +49,15 @@ public class RatingEntity implements Serializable {
 
     public RatingEntity() {
     }
-    
-    public Long getRatingId() {
+
+    public String getRatingId() {
         return ratingId;
     }
 
-    public void setRatingId(Long ratingId) {
+    public void setRatingId(String ratingId) {
         this.ratingId = ratingId;
     }
-
+    
     public Long getUserId() {
         return userId;
     }

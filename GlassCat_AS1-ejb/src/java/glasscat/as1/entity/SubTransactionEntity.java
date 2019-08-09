@@ -24,11 +24,11 @@ public class SubTransactionEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "subtranscation_id")
-    private Long subtransactionId;
+    private String subtransactionId;
     @Column(name = "transcation_id")
-    private Long transactionId;
+    private String transactionId;
     @Column(name = "item_id")
-    private Long itemId;
+    private String itemId;
     @Column(name = "count")
     private Integer count;
     @Column(name = "extend_1", length = 1023)
@@ -41,27 +41,27 @@ public class SubTransactionEntity implements Serializable {
     public SubTransactionEntity() {
     }
 
-    public Long getSubtransactionId() {
+    public String getSubtransactionId() {
         return subtransactionId;
     }
 
-    public void setSubtransactionId(Long subtransactionId) {
+    public void setSubtransactionId(String subtransactionId) {
         this.subtransactionId = subtransactionId;
     }
 
-    public Long getTransactionId() {
+    public String getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(Long transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
-    public Long getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
