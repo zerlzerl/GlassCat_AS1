@@ -14,6 +14,7 @@ import glasscat.as1.dao.impl.UserDao;
 import glasscat.as1.entity.ConfigurationEntity;
 import glasscat.as1.entity.ItemEntity;
 import glasscat.as1.entity.UserEntity;
+import glasscat.as1.util.IDUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -62,6 +63,7 @@ public class DataInitialization {
         
         System.out.println("######## init initialized flag ########");
         ConfigurationEntity initializedFlag = new ConfigurationEntity();
+        initializedFlag.setId(IDUtil.getUUID());
         initializedFlag.setConfigType("SYSTEM");
         initializedFlag.setConfigName("isInitialized");
         initializedFlag.setValue("TRUE");
