@@ -44,8 +44,6 @@ public class UserEntity implements Serializable {
     private String address;
     @Column(name = "phone_number", length = 255)
     private String phoneNumber;
-    @Column(name = "interests", length = 255)
-    private String interests;
     @Column(name = "gender", length = 255)
     private String gender;
     @Column(name = "birthday")
@@ -140,15 +138,7 @@ public class UserEntity implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public String getInterests() {
-        return interests;
-    }
-
-    public void setInterests(String interests) {
-        this.interests = interests;
-    }
-
+    
     public String getGender() {
         return gender;
     }
