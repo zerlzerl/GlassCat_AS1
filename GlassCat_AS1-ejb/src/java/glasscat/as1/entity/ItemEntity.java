@@ -34,8 +34,6 @@ public class ItemEntity implements Serializable {
     private String imageUrlThumb;
     @Column(name = "category", length = 1023)
     private String category;
-    @Column(name = "mark", length = 1023)
-    private String mark;
     @Column(name = "price")
     private Double price;
     @Column(name = "stock")
@@ -99,14 +97,6 @@ public class ItemEntity implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getMark() {
-        return mark;
-    }
-
-    public void setMark(String mark) {
-        this.mark = mark;
     }
 
     public Double getPrice() {
