@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -29,7 +30,7 @@ public class TransactionEntity implements Serializable {
     @Column(name = "user_id")
     private String userId;
     @Column(name = "transaction_datetime")
-    private Date transactionDatetimeDate;
+    private Timestamp transactionDatetimeDate;
     @Column(name = "extend_1", length = 1023)
     private String extend1;
     @Column(name = "extend_2", length = 1023)
@@ -56,11 +57,11 @@ public class TransactionEntity implements Serializable {
         this.userId = userId;
     }
 
-    public Date getTransactionDatetimeDate() {
+    public Timestamp getTransactionDatetimeDate() {
         return transactionDatetimeDate;
     }
 
-    public void setTransactionDatetimeDate(Date transactionDatetimeDate) {
+    public void setTransactionDatetimeDate(Timestamp transactionDatetimeDate) {
         this.transactionDatetimeDate = transactionDatetimeDate;
     }
 
