@@ -30,6 +30,8 @@ public class ItemEntity implements Serializable {
     private String title;
     @Column(name = "image_url", length = 2047)
     private String imageUrl;
+    @Column(name = "image_url_thumb", length = 2047)
+    private String imageUrlThumb;
     @Column(name = "category", length = 1023)
     private String category;
     @Column(name = "mark", length = 1023)
@@ -80,6 +82,14 @@ public class ItemEntity implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrlThumb() {
+        return imageUrlThumb;
+    }
+
+    public void setImageUrlThumb(String imageUrlThumb) {
+        this.imageUrlThumb = imageUrlThumb;
     }
 
 
