@@ -34,8 +34,8 @@ public class RatingEntity implements Serializable {
     private Integer mark;
     @Column(name = "comment", length = 1023)
     private String comment;
-    @Column(name = "rating_datetime")
-    private Date ratingDatetime;
+    @Column(name = "rating_date")
+    private Date ratingDate;
     @Column(name = "extend_1", length = 1023)
     private String extend1;
     @Column(name = "extend_2", length = 1023)
@@ -90,12 +90,12 @@ public class RatingEntity implements Serializable {
         this.comment = comment;
     }
 
-    public Date getRatingDatetime() {
-        return ratingDatetime;
+    public Date getRatingDate() {
+        return ratingDate;
     }
 
-    public void setRatingDatetime(Date ratingDatetime) {
-        this.ratingDatetime = ratingDatetime;
+    public void setRatingDate(Date ratingDate) {
+        this.ratingDate = ratingDate;
     }
 
     public String getExtend1() {
