@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 public class IDUtil {
     public static String getUUID(){
-        return UUID.randomUUID().toString().replace("-", "").toUpperCase();
+        return UUID.randomUUID().toString().replace("-", "").toLowerCase();
     }
     
     public static void main(String[] args) {
