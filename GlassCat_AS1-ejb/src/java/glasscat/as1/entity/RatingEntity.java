@@ -27,9 +27,9 @@ public class RatingEntity implements Serializable {
     @Column(name = "rating_id")
     private String ratingId;
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
     @Column(name = "item_id")
-    private Long itemId;
+    private String itemId;
     @Column(name = "mark")
     private Integer mark;
     @Column(name = "comment", length = 1023)
@@ -58,19 +58,19 @@ public class RatingEntity implements Serializable {
         this.ratingId = ratingId;
     }
     
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Long getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(Long itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
