@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+this file is the hearder template
+-->
+<!DOCTYPE html>
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui">
+    
+    <b:navBar brand="Girly" brandHref="#{request.contextPath}/index.jsf" fluid="true" inverse="true">
+        <b:navbarLinks>
+            <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
+                <b:commandButton value="Personal Center" look="link" ajax="true" action="#{indexController.personalCenter()}"/>
+                <b:commandButton value="Cart" look="link" ajax="true" action="#{indexController.cart()}"/>
+            </h:form>
+
+        </b:navbarLinks>
+
+        <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+        <b:navbarLinks pull="right">
+            <b:navLink value="    " href="#"></b:navLink>
+        </b:navbarLinks>
+
+        <b:navbarLinks pull="right" styleClass="hidden-xs">
+            <b:navLink value="Hey, #{loginController.userName}"></b:navLink>
+            <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
+                <b:commandButton icon="log-out" value="Logout" look="dark" ajax="true" action="#{loginController.logout()}"/>
+            </h:form>
+        </b:navbarLinks>
+    </b:navBar>
+</ui:composition>

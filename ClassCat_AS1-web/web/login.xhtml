@@ -7,42 +7,42 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <h:head>
-        <title>Sign In Template for BootsFaces</title>
-        <meta name="author" content="Riccardo Massera"></meta>
+        <title>Girly - Login</title>
+        <meta name="author" content="Monica"></meta>
         <style type="text/css">
             .form-signin {
                 margin: 0 auto;
-                max-width: 330px;
-                padding: 15px;
+                max-width: 400px;
+                padding: 20px;
+            }
+            body {
+                background-size:cover; 
+                background-image:url(#{request.contextPath}/resources/img/TrilliumLake.jpg);
+                
             }
         </style>
     </h:head>
-    <h:body style="padding-top: 60px; background-color: #add;">
-        <b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
-            <b:navbarLinks>
-                <b:navLink value="Home" href="#"></b:navLink>
-                <b:navLink value="About" href="#about"></b:navLink>
-                <b:navLink value="Contact" href="#contact"></b:navLink>
-            </b:navbarLinks>
-        </b:navBar>
+    
+    <h:body style="padding-top: 150px;">
+        
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <b:inputText value="#{loginController.loginProof}" id="login_proof" placeholder="Email address/username" >
-                    <f:facet name="prepend">
-                        <b:iconAwesome name="user" />
+                <h1 class="form-signin-heading" style="margin-bottom: 20px; color: rgba(255,255,255,0.8)">Login Girly</h1>
+                <b:inputText value="#{loginController.loginProof}" id="login_proof" placeholder="Email address / Username..." >
+                    <f:facet name="prepend"> 
+                        <b:icon value="user" />
                     </f:facet>
                 </b:inputText>
-                <b:inputText value="#{loginController.password}" id="password" placeholder="Password" type="password">
+
+                <b:inputText value="#{loginController.password}" id="password" placeholder="Password..." type="password">
                     <f:facet name="prepend">
-                        <b:iconAwesome name="key" />
+                        <b:icon value="lock" />
                     </f:facet>
                 </b:inputText>
-                <b:selectBooleanCheckbox value="true" caption="remember me"/>
-                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action="#{loginController.login}"/>
-                <h:form>
-                    <h:commandButton action="#{loginController.getTestPage()}" value="Page1" />
-                </h:form>
+
+                <b:commandButton look="primary btn-block" value="Sign In" size="lg" action="#{loginController.login()}"/>
+                <hr>New New customer? Start here.</hr>
+                <b:commandButton look="success btn-block" value="Sign Up" size="lg" action="#{loginController.registerPage()}"/>                
             </h:form>
         </b:container>
     </h:body>

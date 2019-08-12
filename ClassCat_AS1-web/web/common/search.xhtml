@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+this file is the hearder template
+-->
+<!DOCTYPE html>
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui">
+    
+    <h:form target="_blank">
+        <h1 style="text-align: center">Girly</h1>
+        <div style="padding-top: 30px; padding-left: 30px">
+            <b:inputText placeholder="Search girly clothes..." value="#{searchController.searchStr}" col-md="10" field-size="lg"/>
+        </div>
+        <b:commandButton value="Search" icon="search" look="success" size="lg" action="#{searchController.resultPage}"/>
+    </h:form>
+</ui:composition>

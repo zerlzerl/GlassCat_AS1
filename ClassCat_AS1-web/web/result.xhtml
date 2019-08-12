@@ -5,12 +5,41 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <f:metadata>
+        <f:viewParam name="s" value="#{searchController.searchStr}" />
+        <f:viewAction action="#{searchController.excuteSearch()}"/>
+    </f:metadata>
+    <h:head>
+        <title>Girly - Result</title>
+        <meta name="author" content="Monica"></meta>
+    </h:head>
+    
+    <h:body>
+        <ui:include src="/common/navbar.xhtml"/>
+        
+        <b:container>
+            <b:jumbotron>
+                <b:row>
+                    <ui:include src="/common/search.xhtml"/>
+                </b:row>
+                <br/>
+                <b:row>
+                    <b:label text="Search: #{searchController.searchStr}"/>
+                    <br/>
+                    <br/>
+                    <ui:repeat var="o" value="#{searchController.SList}" varStatus="status">
+                        <h:outputText value="#{o}"/><br/>
+                    </ui:repeat>
+                </b:row>
+                
+            </b:jumbotron>
+        </b:container>
+
+    </h:body>
 </html>
