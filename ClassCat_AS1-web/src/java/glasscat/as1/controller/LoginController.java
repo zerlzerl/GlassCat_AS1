@@ -43,6 +43,10 @@ public class LoginController extends AdminSession implements Serializable {
         setIsLoggedIn(false);
         return Constants.LOGIN_PAGE;
     }
+    
+    public String getTestPage(){
+        return "admin.jsg";
+    }
     public String getLoginProof() {
         return loginProof;
     }

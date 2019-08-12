@@ -53,7 +53,7 @@ public class LoginFilter implements Filter{
             
             // direct to different pages
             String requestURI = request.getRequestURI();
-            System.out.println(requestURI);
+            System.out.println("Request URI: " + requestURI);
             
             // if request a login page, register page or error page, no need login
             if (requestURI.contains(Constants.LOGIN_PAGE) || 
@@ -62,6 +62,7 @@ public class LoginFilter implements Filter{
                 // user requests a login page
                 if (loginController.isLoggedIn()) {
                     // if user logged in, redirect user to index page
+                    
                     response.sendRedirect(this.getRedirectPrefix(request) + request.getContextPath() + "/" + Constants.INDEX_PAGE);
                 } else {
                     // do nothing
@@ -82,7 +83,6 @@ public class LoginFilter implements Filter{
             }
             
             // other requests such as resource links can by pass
-            System.out.println("Loginfilter doFilter");
             chain.doFilter(req, resp);
         }
         

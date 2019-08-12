@@ -39,7 +39,10 @@
                     </f:facet>
                 </b:inputText>
                 <b:selectBooleanCheckbox value="true" caption="remember me"/>
-                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action="#{loginController.login()}"/>
+                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action="#{loginController.login}"/>
+                <h:form>
+                    <h:commandButton action="#{loginController.getTestPage()}" value="Page1" />
+                </h:form>
             </h:form>
         </b:container>
     </h:body>
