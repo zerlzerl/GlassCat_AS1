@@ -1,16 +1,209 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="Monica"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <b:navBar brand="Brand" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Link" href="#"></b:navLink>
+                <b:navLink value="Link" href="#"></b:navLink>
+                <b:dropMenu value="Dropdown">
+                    <b:navLink value="Action" href="#"></b:navLink>
+                    <b:navLink value="Another action" href="#"></b:navLink>
+                    <b:navLink value="Something else here" href="#"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:navLink value="One more separated link" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+            <h:form styleClass="navbar-form navbar-right">
+                <div class="form-group">
+                    <b:inputText placeholder="Email" fieldSize="sm"/>
+                    <!--input type="text" class="form-control" placeholder="Search"/-->
+                </div>
+                <div class="form-group">
+                    <b:inputText placeholder="password" fieldSize="sm"/>
+                </div> 
+                #{' '}
+                <b:commandButton action="a" value="Sign in" look="success" icon="search" iconAlign="right"/>
+            </h:form>
+        </b:navBar>
+        
+        <b:jumbotron>
+            <b:container>
+                <div style="margin-bottom:30px">
+                    <h:form>
+                    <h1 style="text-align: center">Girly</h1>
+                    <div style="padding-top: 30px; padding-left: 40px">
+                        <b:inputText placeholder="Search girly clothes..." col-md="10" field-size="lg"/>
+                    </div>
+                    <b:commandButton action="a" value="Search" icon="search" look="success" size="lg"/>
+                
+                </h:form>
+                </div>
+                
+                <div style="padding-top: 20px; padding-left: 40px">
+                   
+                        <b:container>
+                            <b:row>
+                                <b:column col-md="6">
+                                    <!--<h:form>-->
+                                        <b:panelGrid colSpans="2,2,2,2,4">
+                                            <p>Select category:</p>
+                                            <b:selectMultiMenu value="category" id="categoryId">
+                                                <f:selectItem itemLabel="T-shirts" itemValue="1"/>
+                                                <f:selectItem itemLabel="dresses" itemValue="2"/>
+                                                <f:selectItem itemLabel="sweatshirts" itemValue="3"/>
+                                                <f:selectItem itemLabel="sweaters" itemValue="4"/>
+                                                <f:selectItem itemLabel="skirts" itemValue="5"/>
+                                                <f:selectItem itemLabel="jeans" itemValue="6"/>
+                                            </b:selectMultiMenu>
+                                            <h:message for="categoryId"/>
+                                        </b:panelGrid>
+                                    <!--</h:form>-->
+                                </b:column>
+                                <b:column col-md="6">
+                                    <!--<h:form>-->
+                                        <b:panelGrid colSpans="2,2,2,2,4">
+                                            <p>Select style:</p>
+                                            <b:selectMultiMenu value="style" id="styleId">
+                                                <f:selectItem itemLabel="casual" itemValue="1"/>
+                                                <f:selectItem itemLabel="boho" itemValue="2"/>
+                                                <f:selectItem itemLabel="sexy" itemValue="3"/>
+                                                <f:selectItem itemLabel="glamorous" itemValue="4"/>
+                                                <f:selectItem itemLabel="sporty" itemValue="5"/>
+                                                <f:selectItem itemLabel="others" itemValue="6"/>
+                                            </b:selectMultiMenu>
+                                            <h:message for="styleId"/>
+                                        </b:panelGrid>
+                                    <!--</h:form>-->
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column col-md="6">
+                                    <!--<h:form>-->
+                                        <b:panelGrid colSpans="2,2,2,2,4">
+                                            <p>Select color:</p>
+                                            <b:selectMultiMenu value="color" id="colorId">
+                                                <f:selectItem itemLabel="black" itemValue="1"/>
+                                                <f:selectItem itemLabel="white" itemValue="2"/>
+                                                <f:selectItem itemLabel="pink" itemValue="3"/>
+                                                <f:selectItem itemLabel="blue" itemValue="4"/>
+                                                <f:selectItem itemLabel="grey" itemValue="5"/>
+                                                <f:selectItem itemLabel="red" itemValue="6"/>
+                                                <f:selectItem itemLabel="others" itemValue="7"/>
+                                            </b:selectMultiMenu>
+                                            <h:message for="colorId"/>
+                                        </b:panelGrid>
+                                    <!--</h:form>-->
+                                </b:column>
+                                <b:column col-md="6">
+                                    <!--<h:form>-->
+                                        <b:panelGrid colSpans="2,2,2,2,4">
+                                            <p>Select season:</p>
+                                            <b:selectMultiMenu value="season" id="seasonId">
+                                                <f:selectItem itemLabel="spring" itemValue="1"/>
+                                                <f:selectItem itemLabel="summer" itemValue="2"/>
+                                                <f:selectItem itemLabel="fall" itemValue="3"/>
+                                                <f:selectItem itemLabel="winter" itemValue="4"/>
+                                            </b:selectMultiMenu>
+                                            <h:message for="seasonId"/>
+                                        </b:panelGrid>
+                                    <!--</h:form>-->
+                                </b:column>
+                            </b:row>
+                        </b:container>
+                        <b:commandButton action="a" value="Start!" look="success" size="lg"/>
+                  
+                </div>
+               
+                
+                
+                
+                
+ 
+                
+            </b:container>
+
+        </b:jumbotron>
+        <b:container>
+            <b:row>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                
+            </b:row>
+            <br/>
+            <b:row>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                <b:column col-md="3">
+                    <b:thumbnail>
+                        <b:image name="itemImg" value="https://img.ltwebstatic.com/images2_pi/2018/11/21/15427893073144718215_thumbnail_220x293.jpg" />
+                        <h4>Heading</h4>
+                        <strong>US$5.00</strong>
+                    </b:thumbnail>
+                </b:column>
+                
+            </b:row>
+            
+            <hr/>
+            <footer>
+            <p>© Girly 2019</p>
+            </footer>
+        </b:container>
+
+    </h:body>
 </html>
