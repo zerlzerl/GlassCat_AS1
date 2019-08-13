@@ -12,11 +12,16 @@ package glasscat.as1.util;
 public interface Constants {
     String INDEX_PAGE = "index.jsf";  //front end main page
     String LOGIN_PAGE = "login.jsf";  //login page
-    String REGISTER_PAGE = "register.jsf"; //register page
-    String ADMIN_PAGE = "admin.jsf";  //back end management page
+    String REGISTER_PAGE = "register.jsf"; //register page    
     String RESULT_PAGE = "result.jsf"; //result page
     String DETAIL_PAGE = "detail.jsf"; //detail page
     String CART_PAGE = "cart.jsf"; //cart page
+    
+    String ADMIN_PAGE = "admin.jsf";  //back end management page
+    String HISTORY_PAGE = "admin/historical_purchase.jsf";
+    String ITEM_MANAGE_PAGE = "admin/item_management.jsf";
+    String USER_MANAGE_PAGE = "admin/user_management.jsf";
+    
     String ERROR_PAGE = "500.xhtml";  //500 error
     String ACCESS_DENIED_PAGE = "403.xhtml";  // 403 forbidden page
     String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -25,5 +30,5 @@ public interface Constants {
     
     String PROTOCOL = "http"; //change to https if needed
     
-    Boolean IS_ENABLE_LOGIN_FILTER = false; // trigger to enable the login filter
+    Boolean IS_ENABLE_LOGIN_FILTER = true; // trigger to enable the login filter
 }

@@ -2,36 +2,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Project Name</title>
-        <meta name="author" content="The Author"></meta>
+        <title>Girly - Index</title>
+        <meta name="author" content="Monica"></meta>
     </h:head>
     <h:body>
-        <b:navBar brand="Brand" brandHref="#" fluid="true">
-            <b:navbarLinks>
-              <b:navLink value="Link" href="#"></b:navLink>
-              <b:navLink value="Link" href="#"></b:navLink>
-              
-            </b:navbarLinks>
-            
-            <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
-          <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
-            <b:navbarLinks pull="right" styleClass="hidden-xs">
-              <b:navLink value="Link" href="#"></b:navLink>
-              
-            </b:navbarLinks>
-          </b:navBar>
-        <b:container>
+        <ui:include src="/common/navbar.xhtml"/>
+        
+        <b:container>            
             <b:jumbotron>
-                <h1>BootsFaces Starter Template</h1>
-                <p> Use this JSF document as a way to quickly start any new project.</p>
-                <p> All you get is this text and a mostly barebone JSF document.</p>
-                <p>
-                    <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/starter_template.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
-                </p>
+                <ui:include src="/common/search.xhtml"/>
+            </b:jumbotron>
+            <b:jumbotron>
+                <b:row>
+                    <h1>Similarity Recomendation</h1>
+                </b:row>
+            </b:jumbotron>
+            <b:jumbotron>
+                <b:row>
+                    <h1>Collaborative Filter</h1>
+                </b:row>
             </b:jumbotron>
         </b:container>
-
+        <footer style="text-align: center;">
+            <p>© Girly 2019</p>
+        </footer>
     </h:body>
 </html>

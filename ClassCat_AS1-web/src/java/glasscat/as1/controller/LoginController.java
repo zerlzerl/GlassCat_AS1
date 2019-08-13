@@ -25,7 +25,7 @@ public class LoginController extends AdminSession implements Serializable {
     private String loginProof; //login proof which user entered
     private String password;
     private String email; // login proof - email
-    private String userName; // alternative login proof - username
+    private String userName = "admin"; // alternative login proof - username
     
     
     public String login() throws IOException {
@@ -34,18 +34,18 @@ public class LoginController extends AdminSession implements Serializable {
         System.out.println("password: " + this.password);
         currentUser = email;
         setIsLoggedIn(true);
-        return Constants.INDEX_PAGE;
+        return Constants.INDEX_PAGE + "?faces-redirect=true";
         
     }
     
     public String logout() {
         System.out.println("Logout");
         setIsLoggedIn(false);
-        return Constants.LOGIN_PAGE;
+        return "/" + Constants.LOGIN_PAGE + "?faces-redirect=true";
     }
     
-    public String getTestPage(){
-        return "admin.jsg";
+    public String registerPage(){
+        return "/" + Constants.REGISTER_PAGE + "?faces-redirect=true";
     }
     public String getLoginProof() {
         return loginProof;
@@ -61,6 +61,14 @@ public class LoginController extends AdminSession implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
     
     
