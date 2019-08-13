@@ -23,7 +23,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @Table(name = "as1_rating")
 @NamedQueries({
-    @NamedQuery(name = "findRatingsByItemId", query = "Select r from RatingEntity r where r.itemId = :itemId")
+    @NamedQuery(name = "findRatingsByItemId", query = "Select r from RatingEntity r where r.itemId = :itemId ORDER BY r.ratingDate DESC")
 })
 public class RatingEntity implements Serializable {
 

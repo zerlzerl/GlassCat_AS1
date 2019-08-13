@@ -7,9 +7,12 @@ package glasscat.as1.controller;
 
 import glasscat.as1.dao.impl.ItemDao;
 import glasscat.as1.dao.impl.RatingDao;
+import glasscat.as1.dao.impl.UserDao;
 import glasscat.as1.entity.ItemEntity;
 import glasscat.as1.entity.RatingEntity;
+import glasscat.as1.entity.UserEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -26,6 +29,7 @@ public class DetailController implements Serializable {
     private String productId;
     private ItemEntity itemEntity;
     private List<RatingEntity> ratings;
+    private List<String> usernames;
     private float averageMark;
 //    private List<String> ratingUserNames;
     
@@ -33,6 +37,8 @@ public class DetailController implements Serializable {
     private ItemDao itemDao;
     @EJB
     private RatingDao ratingDao;
+    @EJB
+    private UserDao userDao;
     /**
      * Creates a new instance of DetailController
      */
@@ -54,8 +60,12 @@ public class DetailController implements Serializable {
         this.itemEntity = itemDao.findById(this.productId);
         this.ratings = ratingDao.findRatingsByItemId(this.productId);
         float sum = 0.0f;
+        usernames = new ArrayList();
         for(RatingEntity r : ratings) {
+            UserEntity u = userDao.findById(r.getUserId());
+            usernames.add(u.getUserName());
             sum += r.getMark();
+            
         }
         this.averageMark = sum / ratings.size();
     }
@@ -71,10 +81,14 @@ public class DetailController implements Serializable {
     public float getAverageMark() {
         return averageMark;
     }
-
+    
 //    public String getRatingUserName() {
 //        return ratingUserName;
 //    }
+
+    public List<String> getUsernames() {
+        return usernames;
+    }
 
     
 }

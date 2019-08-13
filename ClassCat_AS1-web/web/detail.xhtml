@@ -75,13 +75,13 @@
             <b:container>
                 <b:row>
                     <b:column col-md="3">
-                        <h6>#{rating.userId}</h6>
-                        <h6>#{rating.mark}</h6>
+                        <h6>#{detailController.usernames[status.index]}</h6>
+                        <h6>rating: #{rating.mark}</h6>
                         <p>#{rating.ratingDate}</p>
                     </b:column>
                     <b:column col-md="9">
                         <br/>
-                        <p>#{rating.comment}</p>
+                        <p>#{rating.comment.length() eq 0 ? 'Good' : rating.comment}</p>
                     </b:column>
                 </b:row>  
             </b:container>
@@ -92,22 +92,6 @@
                 </b:row>
             </b:container> 
         </ui:repeat>
-        
-        
-        <!--<div style="height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>-->
-        <b:container>
-            <b:row>
-                <b:column col-md="3">
-                    <h6>u******e</h6>
-                    <h6>4.2</h6>
-                    <p>2019-04-13</p>
-                </b:column>
-                <b:column col-md="9">
-                    <br/>
-                    <p>I love it very much!!!!!!!!!</p>
-                </b:column>
-            </b:row>
-        </b:container>
         <hr/>
         <footer style="text-align: center;">
             <p>© Girly 2019</p>
