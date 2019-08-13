@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +22,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "as1_item")
+@NamedQueries({
+    @NamedQuery(name = "findByTitleLike", query = "select i from ItemEntity i where i.title LIKE CONCAT('%',:title,'%')")})
 public class ItemEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

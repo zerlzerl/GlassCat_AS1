@@ -28,7 +28,7 @@ and open the template in the editor.
         </style>
     </h:head>
     
-    <h:body style="padding-top: 150px;">
+    <h:body style="padding-top: 100px;">
         
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
@@ -59,14 +59,11 @@ and open the template in the editor.
                         <b:icon value="retweet" />
                     </f:facet>
                 </b:inputText><b:message for="@previous"/><br/>
-                <b:commandButton look="success btn-block" value="Create Your Account" size="lg" onclick="#{registerController.signUp()}"/>
-                <hr>Have an account? Back to login.</hr>
-                <b:commandButton look="primary btn-block" value="Back to Login" size="lg" action="#{registerController.loginPage()}"/> 
-<!--                <br></br>
-                <b:alert severity="success" style="display: none;" id="successMsg"><strong>Well done!</strong> You successfully sign up.</b:alert>
-                <b:alert severity="danger" style="display: none;" id="emailReduplicateMsg"><strong>Oh snap!</strong> Sign up fail. Try anothor email. </b:alert>
-                <b:alert severity="danger" style="display: none;" id="PasswordSimpleMsg"><strong>Oh snap!</strong> Password needs </b:alert>
-                <b:alert severity="danger" style="display: none;" id="PasswordDiffMsg"><strong>Oh snap!</strong> Re-entered password is not identical. </b:alert>-->
+                <b:commandButton look="success btn-block" value="Create Your Account" size="lg" onclick="#{registerController.signUp()}"/>                 
+            </h:form>
+            <h:form styleClass="form-signin">
+                Have an account? Back to login.
+                <b:commandButton look="primary btn-block" value="Back to Login" size="lg" action="#{registerController.loginPage()}"/>
             </h:form>
         </b:container>
         <footer style="text-align: center;">

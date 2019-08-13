@@ -5,8 +5,12 @@
  */
 package glasscat.as1.controller;
 
+import glasscat.as1.dao.impl.ItemDao;
+import glasscat.as1.entity.ItemEntity;
 import glasscat.as1.util.Constants;
 import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -18,7 +22,9 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class SearchController {
     private String searchStr;
-    private ArrayList<String> sList;
+    private List<ItemEntity> sList;
+    @EJB
+    private ItemDao itemDao;
     /**
      * Creates a new instance of SearchController
      */
@@ -38,16 +44,16 @@ public class SearchController {
     }
     
     public void excuteSearch(){
-        sList = new ArrayList<>();
-        sList.add("123");
-        sList.add("456");
+        String queryStr = this.searchStr;
+        List<ItemEntity> queryResult = itemDao.findByTitleLike(queryStr);
+        this.sList = queryResult;
     }
 
-    public ArrayList<String> getSList() {
+    public List<ItemEntity> getSList() {
         return sList;
     }
 
-    public void setSList(ArrayList<String> sList) {
+    public void setSList(ArrayList<ItemEntity> sList) {
         this.sList = sList;
     }
     

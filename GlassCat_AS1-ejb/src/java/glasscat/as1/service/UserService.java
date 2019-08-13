@@ -7,9 +7,7 @@ package glasscat.as1.service;
 
 import glasscat.as1.entity.UserEntity;
 import java.util.List;
-import javax.ejb.Local;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+
 
 /**
  *

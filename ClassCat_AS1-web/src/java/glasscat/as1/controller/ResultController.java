@@ -16,6 +16,7 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class ResultController {
     private String queryStr;
+    
     /**
      * Creates a new instance of ResultController
      */
