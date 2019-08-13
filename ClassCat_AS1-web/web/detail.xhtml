@@ -1,31 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <h:head>
-        <title>Girly - Detail</title>
+        <title>Girly - Result</title>
         <meta name="author" content="Monica"></meta>
     </h:head>
-    <h:body>
+    
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-bottom: 20px;">
         <ui:include src="/common/navbar.xhtml"/>
+        
         
         <b:container>
             <b:jumbotron>
-                <h1>BootsFaces Starter Template</h1>
-                <p> Use this JSF document as a way to quickly start any new project.</p>
-                <p> All you get is this text and a mostly barebone JSF document.</p>
-                <p>
-                    <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/starter_template.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
-                </p>
+                <div style="margin-bottom:30px">
+                    <h1 style="text-align: center">Girly</h1>
+                </div>
+                
+                <div style="padding-top: 20px; padding-left: 40px"> 
+                    <b:container>
+                        <b:row>
+                            <b:column col-md="6">
+                                <b:image name="detailImg" value="https://img.ltwebstatic.com/images2_pi/2019/05/28/1559029819683607356_thumbnail_405x552.jpg"/>
+                            </b:column>
+                            <b:column col-md="6">
+                                <h3>Ditsy Floral Print Surplice Ruffle Asymmetrical Hem Dress</h3>
+                                <h2>US$9.00</h2>
+                                <div style="padding-top: 6px">
+                                    <h5>Stock:</h5>
+                                    <p>534</p>
+                                    <h5>Average mark:</h5>
+                                    <p>4.5</p>
+                                    <h5>Color:</h5>
+                                    <p>White</p>
+                                    <h5>Style:</h5>
+                                    <p>hobo</p>
+                                    <h5>Season:</h5>
+                                    <p>Spring</p>
+                                </div>
+                                <div style="padding-top: 6px; padding-left: 40px">
+                                    <h:form>
+                                        <b:panelGrid columns="2">
+                                            <b:commandButton action="a" value="Add to cart" look="warning" size="lg"/>
+                                            <b:commandButton action="a" value="Buy it now" look="danger" size="lg"/>
+                                        </b:panelGrid>
+                                    </h:form> 
+                                </div>
+                               
+                            </b:column>
+                        </b:row>
+                    </b:container>
+                </div>
             </b:jumbotron>
         </b:container>
+        
+        
+        <b:container>
+            <b:row>
+                <div style="border-bottom: 1px solid #505050">
+                    <h2>Customer reviews</h2>
+                </div>
+            </b:row>
+        </b:container>   
+        
+        <b:container>
+            <b:row>
+                <b:column col-md="3">
+                    <h6>u******e</h6>
+                    <h6>4.2</h6>
+                    <p>2019-04-13</p>
+                </b:column>
+                <b:column col-md="9">
+                    <br/>
+                    <p>I love it very much!!!!!!!!!</p>
+                </b:column>
+            </b:row>  
+        </b:container>
+        
+        
+        <b:container>
+            <b:row>
+                <div style="border-bottom: 1px solid #D5D5D5">
+                </div>
+            </b:row>
+        </b:container> 
+        
+        <!--<div style="height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>-->
+        <b:container>
+            <b:row>
+                <b:column col-md="3">
+                    <h6>u******e</h6>
+                    <h6>4.2</h6>
+                    <p>2019-04-13</p>
+                </b:column>
+                <b:column col-md="9">
+                    <br/>
+                    <p>I love it very much!!!!!!!!!</p>
+                </b:column>
+            </b:row>
+        </b:container>
+        <hr/>
         <footer style="text-align: center;">
             <p>© Girly 2019</p>
         </footer>
