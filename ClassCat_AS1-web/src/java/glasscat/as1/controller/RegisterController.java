@@ -5,10 +5,14 @@
  */
 package glasscat.as1.controller;
 
+import glasscat.as1.dao.impl.UserDao;
+import glasscat.as1.entity.UserEntity;
 import glasscat.as1.util.Constants;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
+import javax.ejb.EJB;
 
 /**
  *
@@ -20,6 +24,8 @@ public class RegisterController implements Serializable {
     private String email;
     private String password;
     private String passwordRe;
+    @EJB
+    private UserDao userDao;
     /**
      * Creates a new instance of RegisterController
      */
@@ -27,6 +33,11 @@ public class RegisterController implements Serializable {
     }
     
     public String signUp() {
+        List<UserEntity> users = userDao.findByEmail(this.email);
+        if(users != null && users.size() > 0) {
+            // exists email
+            
+        }
         System.out.println("user Sign Up");
         return Constants.LOGIN_PAGE + "?faces-redirect=true";
     }

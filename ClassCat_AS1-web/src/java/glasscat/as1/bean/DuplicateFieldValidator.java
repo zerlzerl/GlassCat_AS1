@@ -22,7 +22,8 @@ public class DuplicateFieldValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        String password = (String) component.getAttributes().get("password");
+        UIInput passwordComponent = (UIInput) component.getAttributes().get("passwordComponent");
+        String password = (String) passwordComponent.getValue();
         String confirm = (String) value;
         System.out.println("password: " + password);
         System.out.println("confirm: " + confirm);
