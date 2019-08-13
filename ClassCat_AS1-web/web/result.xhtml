@@ -27,10 +27,9 @@
                 
                 <div style="padding-top: 20px; padding-left: 40px"> 
                     <h:form>
-                    <b:container>
-                        <b:row>
-                            <b:column col-md="6">
-                                <!--<h:form>-->
+                        <b:container>
+                            <b:row>
+                                <b:column col-md="6">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Category:</p>
                                         <b:selectMultiMenu value="category" id="categoryId">
@@ -43,10 +42,8 @@
                                         </b:selectMultiMenu>
                                         <h:message for="categoryId"/>
                                     </b:panelGrid>
-                                <!--</h:form>-->
-                            </b:column>
-                            <b:column col-md="6">
-                                <!--<h:form>-->
+                                </b:column>
+                                <b:column col-md="6">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Style:</p>
                                         <b:selectMultiMenu value="style" id="styleId">
@@ -59,12 +56,10 @@
                                         </b:selectMultiMenu>
                                         <h:message for="styleId"/>
                                     </b:panelGrid>
-                                <!--</h:form>-->
-                            </b:column>
-                        </b:row>
-                        <b:row>
-                            <b:column col-md="6">
-                                <!--<h:form>-->
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column col-md="6">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Color:</p>
                                         <b:selectMultiMenu value="color" id="colorId">
@@ -78,10 +73,8 @@
                                         </b:selectMultiMenu>
                                         <h:message for="colorId"/>
                                     </b:panelGrid>
-                                <!--</h:form>-->
-                            </b:column>
-                            <b:column col-md="6">
-                                <!--<h:form>-->
+                                </b:column>
+                                <b:column col-md="6">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Season:</p>
                                         <b:selectMultiMenu value="season" id="seasonId">
@@ -92,12 +85,11 @@
                                         </b:selectMultiMenu>
                                         <h:message for="seasonId"/>
                                     </b:panelGrid>
-                                <!--</h:form>-->
-                            </b:column>
-                        </b:row>
-                        <b:commandButton action="a" value="Start!" look="success" size="lg"/>   
-                    </b:container>
-                      </h:form>             
+                                </b:column>
+                            </b:row>
+                            <b:commandButton action="a" value="Start!" look="success" size="lg"/>   
+                        </b:container>
+                    </h:form>             
                 </div>
             </b:jumbotron>
         </b:container>
@@ -108,7 +100,7 @@
                     <b:column col-md="3" col-sm="4" col-xs="12">
                         <b:thumbnail>
                             <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
-                            <h4>#{item.title}</h4>
+                            <a href="#"><p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p></a>
                             <strong>US$#{item.price}</strong>
                         </b:thumbnail>
                     </b:column>
