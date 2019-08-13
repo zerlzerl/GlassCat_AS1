@@ -10,10 +10,10 @@ import glasscat.as1.dao.impl.RatingDao;
 import glasscat.as1.entity.ItemEntity;
 import glasscat.as1.entity.RatingEntity;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -26,7 +26,9 @@ public class DetailController implements Serializable {
     private String productId;
     private ItemEntity itemEntity;
     private List<RatingEntity> ratings;
-    private float mark;
+    private float averageMark;
+//    private List<String> ratingUserNames;
+    
     @EJB
     private ItemDao itemDao;
     @EJB
@@ -54,7 +56,7 @@ public class DetailController implements Serializable {
         for(RatingEntity r : ratings) {
             sum += r.getMark();
         }
-        this.mark = sum / ratings.size();
+        this.averageMark = sum / ratings.size();
     }
 
     public ItemEntity getItemEntity() {
@@ -65,8 +67,13 @@ public class DetailController implements Serializable {
         return ratings;
     }
     
-    public float getMark() {
-        return mark;
+    public float getAverageMark() {
+        return averageMark;
     }
+
+//    public String getRatingUserName() {
+//        return ratingUserName;
+//    }
+
     
 }
