@@ -100,7 +100,9 @@
                     <b:column col-md="3" col-sm="4" col-xs="12">
                         <b:thumbnail>
                             <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
-                            <a href="#"><p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p></a>
+                            <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
+                                <p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
+                            </a>
                             <strong>US$#{item.price}</strong>
                         </b:thumbnail>
                     </b:column>
