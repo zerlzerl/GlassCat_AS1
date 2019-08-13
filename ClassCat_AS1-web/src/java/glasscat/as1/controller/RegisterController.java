@@ -33,12 +33,12 @@ public class RegisterController implements Serializable {
     }
     
     public String signUp() {
-        List<UserEntity> users = userDao.findByEmail(this.email);
-        if(users != null && users.size() > 0) {
-            // exists email
-            
-        }
-        System.out.println("user Sign Up");
+//        List<UserEntity> users = userDao.findByEmail(this.email);
+//        if(users != null && users.size() > 0) {
+//            // exists email
+//            
+//        }
+//        System.out.println("user Sign Up");
         return Constants.LOGIN_PAGE + "?faces-redirect=true";
     }
 

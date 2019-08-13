@@ -48,6 +48,7 @@ public class DetailController implements Serializable {
     public void itemSearch() {
         // search for item and ratings
         System.out.println(this.productId);
+//        itemDao.setClazz(ItemEntity.class);
         this.itemEntity = itemDao.findById(this.productId);
         this.ratings = ratingDao.findRatingsByItemId(this.productId);
         float sum = 0.0f;

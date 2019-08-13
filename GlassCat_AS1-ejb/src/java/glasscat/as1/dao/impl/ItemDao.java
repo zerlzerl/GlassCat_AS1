@@ -15,6 +15,10 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ItemDao extends BaseDaoImpl<ItemEntity>{
+    
+    public ItemDao() {
+        super(ItemEntity.class);
+    }
     //if any entity specified logic
     
     /**

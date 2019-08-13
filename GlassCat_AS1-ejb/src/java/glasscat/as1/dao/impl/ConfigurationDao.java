@@ -15,6 +15,11 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ConfigurationDao  extends BaseDaoImpl<ConfigurationEntity>{
+
+    public ConfigurationDao() {
+        super(ConfigurationEntity.class);
+    }
+    
     //if any entity specified logic
     
     public List<ConfigurationEntity> findByTypeAndName(String Type, String name){
