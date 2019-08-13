@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "as1_item")
 @NamedQueries({
-    @NamedQuery(name = "findByTitleLike", query = "select i from ItemEntity i where i.title LIKE CONCAT('%',:title,'%')")})
+    @NamedQuery(name = "findByTitleLike", query = "select i from ItemEntity i where UPPER(i.title) LIKE CONCAT('%',UPPER(:title),'%')")})
 public class ItemEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
