@@ -6,6 +6,7 @@
 package glasscat.as1.dao.impl;
 
 import glasscat.as1.entity.UserEntity;
+import java.util.List;
 import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 
@@ -21,4 +22,16 @@ public class UserDao extends BaseDaoImpl<UserEntity>{
     }
     
     //if any entity specified logic
+    public List<UserEntity> findByEmail(String email) {
+        return this.entityManager.createNamedQuery("findByEmail", UserEntity.class)
+                .setParameter("email", email)
+                .getResultList();
+    }
+
+    public List<UserEntity> findByUserName(String username) {
+        return this.entityManager.createNamedQuery("findByUserName", UserEntity.class)
+                .setParameter("userName", username)
+                .getResultList();
+    }
+
 }

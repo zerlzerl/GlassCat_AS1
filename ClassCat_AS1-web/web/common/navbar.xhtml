@@ -24,7 +24,7 @@ this file is the hearder template
         </b:navbarLinks>
 
         <b:navbarLinks pull="right" styleClass="hidden-xs">
-            <b:navLink value="Hey, #{loginController.userName}"></b:navLink>
+            <b:navLink value="Hey, #{empty loginController.userName ? 'visitor' : loginController.userName}"></b:navLink>
             <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs">
                 <b:commandButton icon="log-out" value="Logout" look="dark" ajax="true" action="#{loginController.logout()}"/>
             </h:form>

@@ -27,6 +27,7 @@ public interface Constants {
     String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     String DATE_FORMAT = "yyyy-MM-dd";
     String PAGE_FORMAT = "xhtml";
+    String EMAIL_VALIDATION_REGEX = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}";
     
     String PROTOCOL = "http"; //change to https if needed
     

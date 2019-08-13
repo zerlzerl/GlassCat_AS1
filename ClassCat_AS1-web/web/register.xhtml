@@ -35,12 +35,12 @@ and open the template in the editor.
                 <h1 class="form-signin-heading" style="margin-bottom: 20px; color: rgba(255,255,255,0.8)">Register</h1>
                 
                 <b:inputText value="#{registerController.email}" id="email" placeholder="Email address..." 
-                             required="true" requiredMessage="Email is required!"
-                             validator-message="Not a valid email address!">
+                             required="true" requiredMessage="Email is required!" validator="#{registerController.validateEmail}"
+                             >
                     <f:facet name="prepend"> 
                         <b:icon value="user" />
                     </f:facet>
-                    <f:validateRegex pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}" /> 
+                    <!-- <f:validateRegex pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}" /> -->
                 </b:inputText><b:message for="@previous"/><br/>
                 
                 
@@ -54,19 +54,19 @@ and open the template in the editor.
                 </b:inputText><b:message for="@previous"/><br/>
                 
                 <b:inputText value="#{registerController.passwordRe}" id="passwordRe" placeholder="Re-enter Password..." type="password"
-                             required="true" requiredMessage="Please re-enter password!"
+                             required="true" requiredMessage="Please re-enter password!" validator="#{registerController.validatePasswordComfirmation}"
                              validator-message="Passwords are not equal.">
                     <f:attribute name="passwordComponent" value="#{passwordComponent}" />
-                    <f:validator validatorId="duplicateFieldValidator" />
                     <f:facet name="prepend">
                         <b:icon value="retweet" />
                     </f:facet>
                 </b:inputText><b:message for="@previous"/><br/>
                 
-                <b:commandButton look="success btn-block" value="Create Your Account" size="lg" onclick="#{registerController.signUp()}"/>                 
+                <b:commandButton look="success btn-block" value="Create Your Account" size="lg" action="#{registerController.signUp()}"/>    
+                
             </h:form>
             <h:form styleClass="form-signin">
-                Have an account? Back to login.
+                <h5 style="color: rgba(255,255,255,0.8)">Have an account? Back to login.</h5>
                 <b:commandButton look="primary btn-block" value="Back to Login" size="lg" action="#{registerController.loginPage()}"/>
             </h:form>
         </b:container>

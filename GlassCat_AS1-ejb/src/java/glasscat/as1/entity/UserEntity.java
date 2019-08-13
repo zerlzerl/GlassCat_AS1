@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,6 +23,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "as1_user")
+@NamedQueries({
+    @NamedQuery(name = "findByEmail", query = "select u from UserEntity u where u.email=:email"),
+    @NamedQuery(name = "findByUserName", query = "select u from UserEntity u where u.userName=:userName")})
 public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

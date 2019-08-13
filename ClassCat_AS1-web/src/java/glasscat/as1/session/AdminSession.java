@@ -15,7 +15,8 @@ import javax.enterprise.context.SessionScoped;
 public class AdminSession implements Serializable {
     
     private boolean isLoggedIn = false;
-    private boolean userRedirected = false;
+    private String currentUserId;
+    private Integer membershipLevel;
 
     public AdminSession() {
     }
@@ -28,11 +29,21 @@ public class AdminSession implements Serializable {
         this.isLoggedIn = isLoggedIn;
     }
 
-    public boolean isUserRedirected() {
-        return this.userRedirected;
+    public String getCurrentUserId() {
+        return currentUserId;
     }
 
-    public void setUserRedirected(boolean userRedirected) {
-        this.userRedirected = userRedirected;
+    public void setCurrentUserId(String currentUserId) {
+        this.currentUserId = currentUserId;
     }
+
+    public Integer getMembershipLevel() {
+        return membershipLevel;
+    }
+
+    public void setMembershipLevel(Integer membershipLevel) {
+        this.membershipLevel = membershipLevel;
+    }
+
+
 }

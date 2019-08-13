@@ -28,21 +28,26 @@
         <b:container>
             <h:form styleClass="form-signin" prependId="false">
                 <h1 class="form-signin-heading" style="margin-bottom: 20px; color: rgba(255,255,255,0.8)">Login Girly</h1>
-                <b:inputText value="#{loginController.loginProof}" id="login_proof" placeholder="Email address / Username..." >
+                <b:inputText value="#{loginController.loginProof}" id="login_proof" placeholder="Email address / Username..." 
+                             binding="#{loginProofComponent}" required="true" requiredMessage="Email or username is required!">
                     <f:facet name="prepend"> 
                         <b:icon value="user" />
                     </f:facet>
-                </b:inputText>
+                </b:inputText><b:message for="@previous"/><br/>
 
-                <b:inputText value="#{loginController.password}" id="password" placeholder="Password..." type="password">
+                <b:inputText value="#{loginController.password}" id="password" placeholder="Password..." type="password" validator="#{loginController.loginValidator}"
+                             required="true" requiredMessage="Passwordis required!">
+                    <f:attribute name="loginProofComponent" value="#{loginProofComponent}" />
                     <f:facet name="prepend">
                         <b:icon value="lock" />
                     </f:facet>
-                </b:inputText>
+                </b:inputText><b:message for="@previous"/><br/>
 
-                <b:commandButton look="primary btn-block" value="Sign In" size="lg" action="#{loginController.login()}"/>
-                <hr>New New customer? Start here.</hr>
-                <b:commandButton look="success btn-block" value="Sign Up" size="lg" action="#{loginController.registerPage()}"/>                
+                <b:commandButton look="primary btn-block" value="Sign In" size="lg" action="#{loginController.login()}"/>            
+            </h:form>
+            <h:form styleClass="form-signin">
+                <h5>New customer? Start here.</h5>
+                <b:commandButton look="success btn-block" value="Sign Up" size="lg" action="#{loginController.registerPage()}"/>  
             </h:form>
         </b:container>
     </h:body>
