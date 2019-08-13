@@ -35,15 +35,17 @@ and open the template in the editor.
                 <h1 class="form-signin-heading" style="margin-bottom: 20px; color: rgba(255,255,255,0.8)">Register</h1>
                 
                 <b:inputText value="#{registerController.email}" id="email" placeholder="Email address..." 
-                             required="true" requiredMessage="Email is required!">
+                             required="true" requiredMessage="Email is required!"
+                             validator-message="Not a valid email address!">
                     <f:facet name="prepend"> 
                         <b:icon value="user" />
                     </f:facet>
+                    <f:validateRegex pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}" /> 
                 </b:inputText><b:message for="@previous"/><br/>
                 
                 
                 <b:inputText value="#{registerController.password}" id="password" placeholder="Password..." type="password"
-                             required="true" requiredMessage="Password is required!"
+                             binding="#{passwordComponent}" required="true" requiredMessage="Password is required!"
                              validator-message="A password should contain 8-20 characters, including a mixture of upper and lower case letters, at least 1 digit and at least an arbitrary set of special characters.">
                     <f:facet name="prepend">
                         <b:icon value="lock" />
@@ -53,12 +55,14 @@ and open the template in the editor.
                 
                 <b:inputText value="#{registerController.passwordRe}" id="passwordRe" placeholder="Re-enter Password..." type="password"
                              required="true" requiredMessage="Please re-enter password!"
-                             validator-message="A password should contain 8-20 characters, including a mixture of upper and lower case letters, at least 1 digit and at least an arbitrary set of special characters.">
+                             validator-message="Passwords are not equal.">
+                    <f:attribute name="passwordComponent" value="#{passwordComponent}" />
                     <f:validator validatorId="duplicateFieldValidator" />
                     <f:facet name="prepend">
                         <b:icon value="retweet" />
                     </f:facet>
                 </b:inputText><b:message for="@previous"/><br/>
+                
                 <b:commandButton look="success btn-block" value="Create Your Account" size="lg" onclick="#{registerController.signUp()}"/>                 
             </h:form>
             <h:form styleClass="form-signin">

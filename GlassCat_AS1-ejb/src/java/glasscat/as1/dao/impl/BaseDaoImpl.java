@@ -26,8 +26,8 @@ public abstract class BaseDaoImpl<T extends Serializable> implements Dao<T> {
     protected Class<T> clazz ;
     
     // constructor
-    public final void setClazz( Class<T> clazzToSet ){
-        this.clazz = clazzToSet;
+    public BaseDaoImpl(Class<T> entityClass){
+        this.clazz = entityClass;
     }
     
     // implements

@@ -14,6 +14,11 @@ import javax.ejb.Stateless;
  * @author Li Xuekai<zerlzerl@163.com>
  */
 @Stateless
-public class UserDao extends BaseDaoImpl<UserEntity>{    
+public class UserDao extends BaseDaoImpl<UserEntity>{
+
+    public UserDao() {
+        super(UserEntity.class);
+    }
+    
     //if any entity specified logic
 }

@@ -15,6 +15,10 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class RatingDao  extends BaseDaoImpl<RatingEntity>{
+    
+    public RatingDao(){
+        super(RatingEntity.class);
+    }
     //if any entity specified logic
     public List<RatingEntity> findRatingsByItemId(String itemId) {
         return this.entityManager.createNamedQuery("findRatingsByItemId", RatingEntity.class)

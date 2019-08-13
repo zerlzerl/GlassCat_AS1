@@ -14,5 +14,10 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class TransactionDao extends BaseDaoImpl<TransactionEntity>{
+
+    public TransactionDao() {
+        super(TransactionEntity.class);
+    }
+    
     //if any entity specified logic
 }
