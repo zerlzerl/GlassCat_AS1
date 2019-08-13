@@ -44,7 +44,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements Dao<T> {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         T object = this.findById(id);
         this.delete(object);
     }
@@ -55,7 +55,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements Dao<T> {
     }
 
     @Override
-    public T findById(Long id) {
+    public T findById(String id) {
         return this.entityManager.find(this.clazz, id);
     }
 

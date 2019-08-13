@@ -28,7 +28,7 @@ public interface Dao<T extends Serializable>{
      * delete by id
      * @param id 
      */
-    public void deleteById(Long id);
+    public void deleteById(String id);
     /**
      * update
      * @param object 
@@ -39,7 +39,7 @@ public interface Dao<T extends Serializable>{
      * @param id
      * @return 
      */
-    public T findById(Long id);
+    public T findById(String id);
     /**
      * find all records
      * @return 

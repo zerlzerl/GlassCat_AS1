@@ -47,6 +47,7 @@ public class SearchController {
         String queryStr = this.searchStr;
         List<ItemEntity> queryResult = itemDao.findByTitleLike(queryStr);
         this.sList = queryResult;
+        System.out.println(itemDao.findAll().get(0).getTitle());
     }
 
     public List<ItemEntity> getSList() {

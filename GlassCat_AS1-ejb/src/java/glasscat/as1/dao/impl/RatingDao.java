@@ -6,6 +6,7 @@
 package glasscat.as1.dao.impl;
 
 import glasscat.as1.entity.RatingEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -15,4 +16,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class RatingDao  extends BaseDaoImpl<RatingEntity>{
     //if any entity specified logic
+    public List<RatingEntity> findRatingsByItemId(String itemId) {
+        return this.entityManager.createNamedQuery("findRatingsByItemId", RatingEntity.class)
+                .setParameter("itemId", itemId)
+                .getResultList();
+    }
 }
