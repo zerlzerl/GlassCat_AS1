@@ -29,7 +29,7 @@
                     <h:form>
                         <b:container>
                             <b:row>
-                                <b:column col-md="6">
+                                <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Category:</p>
                                         <b:selectMultiMenu value="category" id="categoryId">
@@ -43,7 +43,7 @@
                                         <h:message for="categoryId"/>
                                     </b:panelGrid>
                                 </b:column>
-                                <b:column col-md="6">
+                                <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Style:</p>
                                         <b:selectMultiMenu value="style" id="styleId">
@@ -57,9 +57,12 @@
                                         <h:message for="styleId"/>
                                     </b:panelGrid>
                                 </b:column>
+                                <b:column col-md="2">
+                                     <b:commandButton action="a" value="Filter!" size="lg"/>
+                                </b:column>
                             </b:row>
                             <b:row>
-                                <b:column col-md="6">
+                                <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Color:</p>
                                         <b:selectMultiMenu value="color" id="colorId">
@@ -74,7 +77,7 @@
                                         <h:message for="colorId"/>
                                     </b:panelGrid>
                                 </b:column>
-                                <b:column col-md="6">
+                                <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Season:</p>
                                         <b:selectMultiMenu value="season" id="seasonId">
@@ -87,7 +90,7 @@
                                     </b:panelGrid>
                                 </b:column>
                             </b:row>
-                            <b:commandButton action="a" value="Start!" look="success" size="lg"/>   
+                              
                         </b:container>
                     </h:form>             
                 </div>

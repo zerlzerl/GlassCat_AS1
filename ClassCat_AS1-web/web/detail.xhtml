@@ -5,7 +5,10 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+    <f:metadata>
+        <f:viewParam name="productId" value="#{detailController.productId}" />
+        <f:viewAction action="#{detailController.itemSearch()}"/>
+    </f:metadata>
     <h:head>
         <title>Girly - Result</title>
         <meta name="author" content="Monica"></meta>
@@ -26,22 +29,22 @@
                     <b:container>
                         <b:row>
                             <b:column col-md="6">
-                                <b:image name="detailImg" value="https://img.ltwebstatic.com/images2_pi/2019/05/28/1559029819683607356_thumbnail_405x552.jpg"/>
+                                <b:image name="detailImg" value="https:#{detailController.itemEntity.imageUrl}"/>
                             </b:column>
                             <b:column col-md="6">
-                                <h3>Ditsy Floral Print Surplice Ruffle Asymmetrical Hem Dress</h3>
-                                <h2>US$9.00</h2>
+                                <h3>#{detailController.itemEntity.title}</h3>
+                                <h2>US$#{detailController.itemEntity.price}</h2>
                                 <div style="padding-top: 6px">
                                     <h5>Stock:</h5>
-                                    <p>534</p>
+                                    <p>#{detailController.itemEntity.stock}</p>
                                     <h5>Average mark:</h5>
-                                    <p>4.5</p>
+                                    <p>#{detailController.mark}</p>
                                     <h5>Color:</h5>
-                                    <p>White</p>
+                                    <p>#{detailController.itemEntity.color}</p>
                                     <h5>Style:</h5>
-                                    <p>hobo</p>
+                                    <p>#{detailController.itemEntity.style}</p>
                                     <h5>Season:</h5>
-                                    <p>Spring</p>
+                                    <p>#{detailController.itemEntity.season}</p>
                                 </div>
                                 <div style="padding-top: 6px; padding-left: 40px">
                                     <h:form>
