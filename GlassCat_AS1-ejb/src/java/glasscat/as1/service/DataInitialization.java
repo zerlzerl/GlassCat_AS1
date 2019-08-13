@@ -7,6 +7,7 @@ package glasscat.as1.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import glasscat.as1.dao.impl.CartDao;
 import glasscat.as1.dao.impl.ConfigurationDao;
 import glasscat.as1.dao.impl.ItemDao;
 import glasscat.as1.dao.impl.RatingDao;
@@ -60,6 +61,8 @@ public class DataInitialization {
     private RatingDao ratingDao;
     @EJB
     private ConfigurationDao configurationDao;
+    @EJB
+    private CartDao cartDao;
     
     public DataInitialization() {
         
@@ -133,7 +136,7 @@ public class DataInitialization {
                 TransactionEntity transactionEntity = new TransactionEntity();
                 transactionEntity.setTransactionId(transaction.getString("transaction_id"));
                 transactionEntity.setUserId(transaction.getString("user_id"));
-                transactionEntity.setTransactionDatetimeDate(new java.sql.Timestamp(new SimpleDateFormat(DATETIME_FORMAT)
+                transactionEntity.setTransactionDatetime(new java.sql.Timestamp(new SimpleDateFormat(DATETIME_FORMAT)
                         .parse(transaction.getString("transaction_datetime")).getTime()));
                 transactionDao.save(transactionEntity);
             }
@@ -163,7 +166,8 @@ public class DataInitialization {
         } catch (Exception ex) {
             Logger.getLogger(DataInitialization.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
+        
+//        cartDao.findAll();
         
         System.out.println("######## init initialized flag ########");
         ConfigurationEntity initializedFlag = new ConfigurationEntity();
