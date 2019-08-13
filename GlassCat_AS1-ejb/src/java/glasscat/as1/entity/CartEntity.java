@@ -12,41 +12,41 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  *
- * @author Li Xuekai<zerlzerl@163.com>
+ * @author 86185
  */
 @Entity
-@Table(name = "as1_transaction")
-public class TransactionEntity implements Serializable {
+@Table(name="as1_cart")
+public class CartEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "transaction_id")
-    private String transactionId;
-    @Column(name = "user_id")
+    @Column(name="cart_id", nullable=false)
+    private String cartId;
+    @Column(name = "user_id", nullable=false)
     private String userId;
-    @Column(name = "transaction_datetime")
-    private Timestamp transactionDatetime;
+    @Column(name = "item_id", nullable=false)
+    private String itemId;
+    @Column(name = "count", nullable=false)
+    private Integer count;
     @Column(name = "extend_1", length = 1023)
     private String extend1;
     @Column(name = "extend_2", length = 1023)
     private String extend2;
     @Column(name = "extend_3", length = 1023)
     private String extend3;
-
-    public TransactionEntity() {
+    
+    public CartEntity() {
     }
 
-    public String getTransactionId() {
-        return transactionId;
+    public String getCartId() {
+        return cartId;
     }
 
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
     public String getUserId() {
@@ -57,12 +57,20 @@ public class TransactionEntity implements Serializable {
         this.userId = userId;
     }
 
-    public Timestamp getTransactionDatetime() {
-        return transactionDatetime;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setTransactionDatetime(Timestamp transactionDatetime) {
-        this.transactionDatetime = transactionDatetime;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public String getExtend1() {
@@ -89,21 +97,22 @@ public class TransactionEntity implements Serializable {
         this.extend3 = extend3;
     }
 
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (transactionId != null ? transactionId.hashCode() : 0);
+        hash += (cartId != null ? cartId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TransactionEntity)) {
+        if (!(object instanceof CartEntity)) {
             return false;
         }
-        TransactionEntity other = (TransactionEntity) object;
-        if ((this.transactionId == null && other.transactionId != null) || (this.transactionId != null && !this.transactionId.equals(other.transactionId))) {
+        CartEntity other = (CartEntity) object;
+        if ((this.cartId == null && other.cartId != null) || (this.cartId != null && !this.cartId.equals(other.cartId))) {
             return false;
         }
         return true;
@@ -111,7 +120,7 @@ public class TransactionEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "glasscat.as1.entity.Transaction[ id=" + transactionId + " ]";
+        return "glasscat.as1.entity.CartEntity[ id=" + cartId + " ]";
     }
     
 }

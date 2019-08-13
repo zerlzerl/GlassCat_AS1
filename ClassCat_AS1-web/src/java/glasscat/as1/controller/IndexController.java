@@ -5,12 +5,10 @@
  */
 package glasscat.as1.controller;
 
-import com.sun.corba.se.impl.orbutil.closure.Constant;
 import glasscat.as1.util.Constants;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import javax.enterprise.inject.Specializes;
 import javax.inject.Inject;
 
 /**
