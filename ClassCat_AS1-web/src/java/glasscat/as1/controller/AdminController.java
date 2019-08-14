@@ -12,10 +12,14 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -72,7 +76,9 @@ public class AdminController implements Serializable {
             this.address = user.getAddress();
             this.phoneNo = user.getPhoneNumber();
             this.gender = user.getGender();
-            this.birthday = new SimpleDateFormat("yyyy-MM-dd").format(user.getBirthday());
+            if (user.getBirthday() != null) {
+                this.birthday = new SimpleDateFormat("yyyy-MM-dd").format(user.getBirthday());
+            }            
             this.profession = user.getProfession();
         }
         
@@ -82,6 +88,21 @@ public class AdminController implements Serializable {
         String requestURI = origRequest.getRequestURI();
         System.out.println(requestURI);
         return requestURI;
+    }
+    
+    public void usernameValidator(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+        String username = (String) value;
+        if (username != null) {
+            List<UserEntity> users = userDao.findByUserName(username);
+            if (users == null || users.isEmpty()) {
+                // do nothing
+                return;
+            } else {
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Username is existing!", 
+                    "Please try anothor username!");
+                throw new ValidatorException(msg);
+            }
+        }
     }
 
     public String getEmail() {
