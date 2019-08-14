@@ -69,6 +69,7 @@ public class LoginController extends AdminSession implements Serializable {
             // user use username to login
             users = userDao.findByUserName(proof);            
         }
+        
         if (users != null && users.size() > 0) {
             // search a existing user
             UserEntity u = users.get(0);

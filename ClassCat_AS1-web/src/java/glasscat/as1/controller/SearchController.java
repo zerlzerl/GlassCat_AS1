@@ -6,10 +6,17 @@
 package glasscat.as1.controller;
 
 import glasscat.as1.dao.impl.ItemDao;
+import glasscat.as1.dao.impl.RatingDao;
 import glasscat.as1.entity.ItemEntity;
 import glasscat.as1.util.Constants;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -22,10 +29,14 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class SearchController {
     private String searchStr;
-    private List<ItemEntity> sList;
-    private List<Double> marks;
+    private List<ItemEntity> itemList;
+    private List<Double> itemMarks;
+    private Map<ItemEntity, Double> item2Marks;
+    private Map<ItemEntity, Double> sortedMap;
     @EJB
     private ItemDao itemDao;
+    @EJB
+    private RatingDao ratingDao;
     /**
      * Creates a new instance of SearchController
      */
@@ -47,17 +58,39 @@ public class SearchController {
     public void excuteSearch(){
         String queryStr = this.searchStr;
         List<ItemEntity> queryResult = itemDao.findByAttributesLike(queryStr);
-        this.sList = queryResult;
+        item2Marks = new HashMap<>((int) (queryResult.size() / 0.75));
+        
+        for (ItemEntity result : queryResult) {
+            //get the average mark of item
+            item2Marks.put(result, ratingDao.findAverageMarkByItemId(result.getId()));
+        }
+        
+        // sort hashmap by value
+        sortedMap = new LinkedHashMap<>();
+        item2Marks.entrySet().stream()
+                .sorted(Map.Entry.<ItemEntity, Double>comparingByValue().reversed())
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+        
+        this.itemList = sortedMap.keySet().stream().collect(Collectors.toList());  
+        this.itemMarks = sortedMap.values().stream().collect(Collectors.toList()); 
+        
     }
 
-    public List<ItemEntity> getSList() {
-        return sList;
+    public List<ItemEntity> getItemList() {
+        return itemList;
     }
 
-    public void setSList(ArrayList<ItemEntity> sList) {
-        this.sList = sList;
+    public List<Double> getItemMarks() {
+        return itemMarks;
     }
     
+
+    public Map<ItemEntity, Double> getSortedMap() {
+        return sortedMap;
+    }
+
     
+    
+
     
 }

@@ -6,6 +6,7 @@
 package glasscat.as1.dao.impl;
 
 import glasscat.as1.entity.RatingEntity;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -24,5 +25,16 @@ public class RatingDao  extends BaseDaoImpl<RatingEntity>{
         return this.entityManager.createNamedQuery("findRatingsByItemId", RatingEntity.class)
                 .setParameter("itemId", itemId)
                 .getResultList();
+    }
+    
+    public double findAverageMarkByItemId(String itemId) {
+        List<BigDecimal> found = this.entityManager.createNamedQuery("findAverageMarkByItemId", BigDecimal.class)
+                .setParameter("itemId", itemId)
+                .getResultList();
+        if (found.isEmpty()) {
+            return 0.0;
+        } else {
+            return found.get(0).doubleValue();
+        }
     }
 }
