@@ -54,6 +54,12 @@ public class LoginController extends AdminSession implements Serializable {
             return; // Just ignore and let required="true" do its job.
         }
         
+        if (!Pattern.matches(Constants.PASSWD_VALIDATION_REGEX, passwd)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Password is invalid", 
+                    "A password should contain 8-20 characters, including a mixture of upper and lower case letters, "
+                            + " at least 1 digit and at least an arbitrary set of special characters.");
+            throw new ValidatorException(msg);
+        }
         // user database table check
         List<UserEntity> users;
         if (Pattern.matches(Constants.EMAIL_VALIDATION_REGEX, proof)) {

@@ -31,4 +31,15 @@ public class ItemDao extends BaseDaoImpl<ItemEntity>{
                 .setParameter("title", queryStr)
                 .getResultList();
     }
+    
+    /**
+     * This method is used to fuzzy query item table by the combination of 5 different attributes
+     * @param queryStr
+     * @return 
+     */
+    public List<ItemEntity> findByAttributesLike(String queryStr){
+        return this.entityManager.createNamedQuery("findByAttributesLike", ItemEntity.class)
+                .setParameter("keyword", queryStr)
+                .getResultList();
+    }
 }

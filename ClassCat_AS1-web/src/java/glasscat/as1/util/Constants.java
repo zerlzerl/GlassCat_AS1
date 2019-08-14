@@ -28,7 +28,7 @@ public interface Constants {
     String DATE_FORMAT = "yyyy-MM-dd";
     String PAGE_FORMAT = "xhtml";
     String EMAIL_VALIDATION_REGEX = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}";
-    
+    String PASSWD_VALIDATION_REGEX = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})";
     String PROTOCOL = "http"; //change to https if needed
     
     Boolean IS_ENABLE_LOGIN_FILTER = true; // trigger to enable the login filter

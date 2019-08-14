@@ -64,18 +64,17 @@ public class RegisterController implements Serializable {
     }
     
     public void validateEmail(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        String email = (String) value;
-        System.out.println("email: " + email);
-        if (email == null || email == null) {
+        String em = (String) value;
+        System.out.println("email: " + em);
+        if (em == null || em == null) {
             return; // Just ignore and let required="true" do its job.
         }
         
-        if (!Pattern.matches(Constants.EMAIL_VALIDATION_REGEX, email)) {
+        if (!Pattern.matches(Constants.EMAIL_VALIDATION_REGEX, em)) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Not a valid email.", "Please check your email");
             throw new ValidatorException(msg);
         }
-        
-        List<UserEntity> users = userDao.findByEmail(email);
+        List<UserEntity> users = userDao.findByEmail(em);
         if (users != null && users.size() > 0) {
             throw new ValidatorException(new FacesMessage("Email is existing."));
         }

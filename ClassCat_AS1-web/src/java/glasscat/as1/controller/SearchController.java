@@ -23,6 +23,7 @@ import javax.enterprise.context.RequestScoped;
 public class SearchController {
     private String searchStr;
     private List<ItemEntity> sList;
+    private List<Double> marks;
     @EJB
     private ItemDao itemDao;
     /**
@@ -45,7 +46,7 @@ public class SearchController {
     
     public void excuteSearch(){
         String queryStr = this.searchStr;
-        List<ItemEntity> queryResult = itemDao.findByTitleLike(queryStr);
+        List<ItemEntity> queryResult = itemDao.findByAttributesLike(queryStr);
         this.sList = queryResult;
     }
 
