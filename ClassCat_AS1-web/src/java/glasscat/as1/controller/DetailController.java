@@ -105,6 +105,8 @@ public class DetailController implements Serializable {
         } catch (Exception ex) {
             Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        itemSearch();
+//        return "/" + Constants.DETAIL_PAGE + "?productId=" + this.productId;
     }
     
     public String addCart() {
