@@ -9,11 +9,16 @@ import glasscat.as1.dao.impl.CartDao;
 import glasscat.as1.dao.impl.ItemDao;
 import glasscat.as1.entity.CartEntity;
 import glasscat.as1.entity.ItemEntity;
+import glasscat.as1.service.TransactionService;
 import glasscat.as1.util.Constants;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -33,6 +38,8 @@ public class CartController implements Serializable {
     private CartDao cartDao;
     @EJB
     private ItemDao itemDao;
+    @EJB
+    private TransactionService transactionService;
     @Inject
     private LoginController loginController;
     /**
@@ -81,8 +88,22 @@ public class CartController implements Serializable {
         return "/" + Constants.CART_PAGE + "?faces-redirect=true";
     }
     
-    public void checkout() {
-        
+    public String checkout() {
+        if(this.getCartRecords().size() > 0) {
+            try {
+                Map<String, Integer> cartMap = new HashMap<String, Integer>(this.getCartRecords().size());
+                for(CartEntity cartEntity : this.cartRecords) {
+                    cartMap.put(cartEntity.getItemId(), cartEntity.getCount());
+                }
+                transactionService.saveMultiTransaction(cartMap, loginController.getCurrentUserId());
+                for(CartEntity cartEntity : this.cartRecords) {
+                    this.cartDao.delete(cartEntity);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return "/" + Constants.CART_PAGE + "?faces-redirect=true";
     }
 
 }

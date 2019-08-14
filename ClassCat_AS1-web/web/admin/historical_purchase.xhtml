@@ -87,6 +87,9 @@
             border-radius: 50%;
             display: inline-block;
         }
+        label.disabled {
+            color: #ccc;
+        }
         </style>
         
         <!--right part-->
@@ -105,7 +108,7 @@
                                             <b:image name="itemImgThumb" value="https:#{cartController.itemEntities[status.index].imageUrlThumb}"/>
                                         </a>
                                         </b:column>
-                                    <b:column col-md="3">
+                                    <b:column col-md="2">
                                         <div>
                                             <h5>Transaction:</h5>
                                             <p>#{cartController.itemEntities[status.index].stock}</p>
@@ -113,30 +116,23 @@
                                             <p>#{cartController.itemEntities[status.index].color}</p>
                                         </div>
                                     </b:column>
-                                    <b:column col-md="5">
-                                        <style>
-                                            label.disabled {
-                                              color: #ccc;
-                                            }
-                                        </style>
-
-                                        <p>How do you like it? You can remark it.</p>
-                                        <b:panelGrid size="xs" columns="5">
-                                            <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="1" itemValue="1" />
-                                            <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="2" itemValue="2" />
-                                            <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="3" itemValue="3" />
-                                            <b:radiobutton value="#{radiobuttonBean.javaVersion}" itemLabel="4" itemValue="4" disabled="true"/>
-                                            <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="5" itemValue="5" />
-                                        </b:panelGrid>
-                                        <b:messages />
-                                        
+                                    <!--to be replaced when the item has been marked-->
+                                    <b:column col-md="6">
+                                        <p>Mark for it:</p>
                                         <b:form>
+                                            <b:panelGrid size="xs" columns="6">
+                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="1" itemValue="1" />
+                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="2" itemValue="2" />
+                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="3" itemValue="3" />
+                                                <b:radiobutton value="#{radiobuttonBean.javaVersion}" itemLabel="4" itemValue="4" disabled="true"/>
+                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="5" itemValue="5" />
+                                            </b:panelGrid>
+                                            <b:messages />
+                                        
                                             <b:inputTextarea placeholder="Comment here..." value="#{barcodeBean.nonEmptyText}">
-                                                <f:ajax event="keyup" render="label" listener="#{barcodeBean.capitalizeURL}" />
                                             </b:inputTextarea>
                                             <b:commandButton value="Commit" ajax="true" look="warning"/>
                                         </b:form>
-                                        
                                     </b:column>
                                 </b:row>
                             </b:container>
