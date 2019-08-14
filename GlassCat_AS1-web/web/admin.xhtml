@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Girly - Personal Center</title>
+        <meta name="author" content="Monica"></meta>
+        
+    </h:head>
+    <h:body>
+        <h:outputScript library="holder" name="holder.js" />
+        <ui:include src="/common/navbar.xhtml"/>
+        
+        <b:container fluid="true">
+            <b:row>
+                <ui:include src="/common/admin_nav.xhtml"/>
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    <b:panel collapsible="false" look="info">
+                        <f:facet name="heading">
+                            
+                            
+                            <b:row>
+                                <b:column col-md="9">
+                                    <h:outputText class="h2" value="Complete and modify your personal profile"/>
+                                </b:column>
+                                
+                                <b:column col-md="3">
+                                    <h:outputText value="Email: "/>
+                                    <b:label text="#{adminController.email}" severity="success"/>
+                                    <h:outputText value=" - "/>
+                                    <h:outputText value="Membership: "/>
+                                    <b:label text="#{adminController.memberShip}" severity="primary"/>
+                                </b:column>      
+                                
+                            </b:row>
+                        </f:facet>
+                        <b:container style="margin-top: 30px;">
+                            <b:form>
+                                
+                                <b:row>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.username}" placeholder="User Name..." label="Enter your user name:" validator="#{adminController.usernameValidator}"/>
+                                        <b:message for="@previous"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.firstName}" placeholder="First Name..." label="Enter your first name:" 
+                                                     validator-message="Not a valid first name">
+                                            <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                        <!-- this pattern supports only English names -->
+                                    </b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.lastName}" placeholder="Last Name..." label="Enter your last name:"
+                                                     validator-message="Not a valid last name">
+                                            <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column offset="1" col-md="9"><b:inputText value="#{adminController.address}" placeholder="Address..." label="Enter your address:"/></b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.phoneNo}" placeholder="Phone No..." label="Enter your phone No.:" validator-message="Not a valid phone number.">
+                                            <f:validateRegex pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"/>
+                                            <!-- This pattern supports (123) 456 7899 (123).456.7899 (123)-456-7899 123-456-7899 123 456 7899 1234567899 -->
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                    </b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <p class=" control-label"><b>Select your gender:</b></p>
+                                        <b:panelGrid size="md" columns="4">
+                                            <b:radiobutton value="#{adminController.gender}" itemLabel="Male" itemValue="Male" required="true" />
+                                            <b:radiobutton value="#{adminController.gender}" itemLabel="Female" itemValue="Female" />
+                                        </b:panelGrid>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column offset="1" col-md="4">
+                                        <b:dateTimePicker show-icon="true" icon-position="left" format="YYYY-MM-DD" label="Select your birthday: " 
+                                                          value="#{adminController.birthday}"/>
+                                    </b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:selectOneMenu value="#{adminController.profession}" select2="true" label="Select your profession:">
+                                            <f:selectItems value="#{adminController.professionList}"/>
+                                        </b:selectOneMenu>
+                                    </b:column>
+                                    
+                                </b:row>
+                                <b:row>
+                                    <b:column span="3" offset="2">
+                                    <b:commandButton value="Save" look="primary" style="width:100%" action="#{adminController.saveProfile}"/>
+                                    </b:column>                                
+                                </b:row>
+                            </b:form>                            
+                        </b:container>
+                        
+                    </b:panel>
+                </b:column>
+            </b:row>
+        </b:container> 
+        <style type="text/css">
+        .sub-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .navbar-fixed-top {
+            border: 0 none;
+        }
+        .sidebar {
+            display: none;
+        }
+        @media (min-width: 768px) {
+        .sidebar {
+            background-color: #f5f5f5;
+            border-right: 1px solid #eee;
+            bottom: 0;
+            display: block;
+            left: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px;
+            position: fixed;
+            top: 51px;
+            z-index: 1000;
+        }
+        }
+        .nav-list {
+            margin-bottom: 20px;
+            margin-left: -20px;
+            margin-right: -21px;
+        }
+        .nav-list > li > a {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .nav-list > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+            background-color: #428bca;
+            color: #fff;
+        }
+        .main {
+            padding: 20px;
+        }
+        @media (min-width: 768px) {
+        .main {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        }
+        .main .page-header {
+            margin-top: 0;
+        }
+        .placeholders {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .placeholders h4 {
+            margin-bottom: 0;
+        }
+        .placeholder {
+            margin-bottom: 20px;
+        }
+        .placeholder img {
+            border-radius: 50%;
+            display: inline-block;
+        }
+        </style>
+    </h:body>
+</html>

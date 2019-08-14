@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam name="productId" value="#{detailController.productId}" />
+        <f:viewAction action="#{detailController.itemSearch()}"/>
+    </f:metadata>
+    <h:head>
+        <title>Girly - Result</title>
+        <meta name="author" content="Monica"></meta>
+    </h:head>
+    
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-bottom: 20px;">
+        <ui:include src="/common/navbar.xhtml"/>
+        
+        
+        <b:container>
+            <b:jumbotron>
+                <div style="margin-bottom:30px">
+                    <h1 style="text-align: center">Girly</h1>
+                </div>
+                
+                <div style="padding-top: 20px; padding-left: 40px"> 
+                    <b:container>
+                        <b:row>
+                            <b:column col-md="6">
+                                <b:image name="detailImg" value="https:#{detailController.itemEntity.imageUrl}"/>
+                            </b:column>
+                            <b:column col-md="6">
+                                <h3>#{detailController.itemEntity.title}</h3>
+                                <h2>US$#{detailController.itemEntity.price}</h2>
+                                <div>
+                                    <h5>Stock:</h5>
+                                    <p>#{detailController.itemEntity.stock}</p>
+                                    <h5>Average mark:</h5>
+                                    <h:outputText class="h3" value="#{detailController.averageMark}">
+                                        <f:convertNumber pattern="#0.00"/>
+                                    </h:outputText>
+                                    <h5>Color:</h5>
+                                    <p>#{detailController.itemEntity.color}</p>
+                                    <h5>Style:</h5>
+                                    <p>#{detailController.itemEntity.style}</p>
+                                    <h5>Season:</h5>
+                                    <p>#{detailController.itemEntity.season}</p>                                    
+                                </div>
+                                <div>
+                                    <h:form rendered="#{loginController.membershipLevel gt 0}">
+                                        <h5>Quantity:</h5>
+                                        <b:panelGrid columns="3">
+                                            <b:form>
+                                                <b:inputText id="count" value="#{detailController.count}" validator-message="Tooooo much!">
+                                                    <f:validateLongRange minimum="1" maximum="#{detailController.avalible}"/>
+                                                </b:inputText><b:message for="@previous"/>
+                                            </b:form>
+                                            <b:commandButton action="#{detailController.addCart()}" value="Add to cart" look="warning" size="lg"/>
+                                            <b:commandButton action="#{detailController.buy()}" value="Buy it now" look="danger" size="lg"/>
+                                        </b:panelGrid>
+                                    </h:form> 
+                                </div>
+                               
+                            </b:column>
+                        </b:row>
+                    </b:container>
+                </div>
+            </b:jumbotron>
+        </b:container>
+        
+        
+        <b:container>
+            <b:row>
+                <div style="border-bottom: 1px solid #505050">
+                    <h2>Customer reviews</h2>
+                </div>
+            </b:row>
+        </b:container>   
+        
+        <ui:repeat var="rating" value="#{detailController.ratings}" varStatus="status">
+            <b:container>
+                <b:row>
+                    <b:column col-md="3">
+                        <h6>#{detailController.usernames[status.index]}</h6>
+                        <p>rating: #{rating.mark}</p>
+                        <p>#{rating.ratingDate}</p>
+                    </b:column>
+                    <b:column col-md="9">
+                        <br/>
+                        <h5>#{rating.comment.length() eq 0 ? 'Good' : rating.comment}</h5>
+                    </b:column>
+                </b:row>  
+            </b:container>
+            <b:container>
+                <b:row>
+                    <div style="border-bottom: 1px solid #D5D5D5">
+                    </div>
+                </b:row>
+            </b:container> 
+        </ui:repeat>
+        <hr/>
+        <footer style="text-align: center;">
+            <p>© Girly 2019</p>
+        </footer>
+    </h:body>
+</html>

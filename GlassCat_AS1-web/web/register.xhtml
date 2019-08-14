@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>Girly - Register</title>
+        <meta name="author" content="Monica"></meta>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 400px;
+                padding: 20px;
+            }
+            body {
+                background-size:cover; 
+                background-image:url(#{request.contextPath}/resources/img/CahuitaNP.jpg);
+                
+            }
+        </style>
+    </h:head>
+    
+    <h:body style="padding-top: 100px;">
+        
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <h1 class="form-signin-heading" style="margin-bottom: 20px; color: rgba(255,255,255,0.8)">Register</h1>
+                
+                <b:inputText value="#{registerController.email}" id="email" placeholder="Email address..." 
+                             required="true" requiredMessage="Email is required!" validator="#{registerController.validateEmail}"
+                             >
+                    <f:facet name="prepend"> 
+                        <b:icon value="user" />
+                    </f:facet>
+                    <!-- <f:validateRegex pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}" /> -->
+                </b:inputText><b:message for="@previous"/><br/>
+                
+                
+                <b:inputText value="#{registerController.password}" id="password" placeholder="Password..." type="password"
+                             binding="#{passwordComponent}" required="true" requiredMessage="Password is required!"
+                             validator-message="A password should contain 8-20 characters, including a mixture of upper and lower case letters, at least 1 digit and at least an arbitrary set of special characters.">
+                    <f:facet name="prepend">
+                        <b:icon value="lock" />
+                    </f:facet>
+                    <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})" />                    
+                </b:inputText><b:message for="@previous"/><br/>
+                
+                <b:inputText value="#{registerController.passwordRe}" id="passwordRe" placeholder="Re-enter Password..." type="password"
+                             required="true" requiredMessage="Please re-enter password!" validator="#{registerController.validatePasswordComfirmation}"
+                             validator-message="Passwords are not equal.">
+                    <f:attribute name="passwordComponent" value="#{passwordComponent}" />
+                    <f:facet name="prepend">
+                        <b:icon value="retweet" />
+                    </f:facet>
+                </b:inputText><b:message for="@previous"/><br/>
+                
+                <b:commandButton look="success btn-block" value="Create Your Account" size="lg" action="#{registerController.signUp()}"/>    
+                
+            </h:form>
+            <h:form styleClass="form-signin">
+                <h5 style="color: rgba(255,255,255,0.8)">Have an account? Back to login.</h5>
+                <b:commandButton look="primary btn-block" value="Back to Login" size="lg" action="#{registerController.loginPage()}"/>
+            </h:form>
+        </b:container>
+        <footer style="text-align: center;">
+            <p>© Girly 2019</p>
+        </footer>
+    </h:body>
+
+</html>

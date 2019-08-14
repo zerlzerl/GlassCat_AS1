@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>Girly - Login</title>
+        <meta name="author" content="Monica"></meta>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 400px;
+                padding: 20px;
+            }
+            body {
+                background-size:cover; 
+                background-image:url(#{request.contextPath}/resources/img/TrilliumLake.jpg);
+                
+            }
+        </style>
+    </h:head>
+  
+    <h:body style="padding-top: 150px;">
+        
+        <b:container>
+            <h:form styleClass="form-signin" prependId="false">
+                <h1 class="form-signin-heading" style="margin-bottom: 20px; color: rgba(255,255,255,0.8)">Login Girly</h1>
+                <b:inputText value="#{loginController.loginProof}" id="login_proof" placeholder="Email address / Username..." 
+                             binding="#{loginProofComponent}" required="true" requiredMessage="Email or username is required!">
+                    <f:facet name="prepend"> 
+                        <b:icon value="user" />
+                    </f:facet>
+                </b:inputText><b:message for="@previous"/><br/>
+
+                <b:inputText value="#{loginController.password}" id="password" placeholder="Password..." type="password" validator="#{loginController.loginValidator}"
+                             required="true" requiredMessage="Passwordis required!">
+                    <f:attribute name="loginProofComponent" value="#{loginProofComponent}" />
+                    <f:facet name="prepend">
+                        <b:icon value="lock" />
+                    </f:facet>
+                </b:inputText><b:message for="@previous"/><br/>
+
+                <b:commandButton look="primary btn-block" value="Sign In" size="lg" action="#{loginController.login()}"/>            
+            </h:form>
+            <h:form styleClass="form-signin">
+                <h5>New customer? Start here.</h5>
+                <b:commandButton look="success btn-block" value="Sign Up" size="lg" action="#{loginController.registerPage()}"/>  
+            </h:form>
+        </b:container>
+    </h:body>
+    <footer style="text-align: center;">
+            <p>© Girly 2019</p>
+    </footer>
+</html>

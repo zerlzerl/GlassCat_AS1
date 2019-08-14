@@ -142,28 +142,27 @@ public class DataInitialization {
                 transactionDao.save(transactionEntity);
             }
             JSONArray subtransactions = JSONObject.parseObject(subtransactionsJsonStr).getJSONArray("subtransactions");
-            for (Object subt : subtransactions) {
-                JSONObject subtransaction = (JSONObject)subt;
+            JSONArray ratings = JSONObject.parseObject(ratingsJsonStr).getJSONArray("ratings");
+            for (int i = 0 ; i < subtransactions.size() ; i ++) {
+                JSONObject subtransaction = subtransactions.getJSONObject(i);
+                JSONObject rating = ratings.getJSONObject(i);
                 SubTransactionEntity subTransactionEntity = new SubTransactionEntity();
                 subTransactionEntity.setSubtransactionId(subtransaction.getString("subtransaction_id"));
                 subTransactionEntity.setTransactionId(subtransaction.getString("transaction_id"));
                 subTransactionEntity.setItemId(subtransaction.getString("item_id"));
                 subTransactionEntity.setCount(subtransaction.getInteger("count"));
                 subTransactionDao.save(subTransactionEntity);
-            }
-            System.out.println("############ init rating information");
-            JSONArray ratings = JSONObject.parseObject(ratingsJsonStr).getJSONArray("ratings");
-            for (Object r : ratings) {
-                JSONObject rating = (JSONObject)r;
                 RatingEntity ratingEntity = new RatingEntity();
                 ratingEntity.setRatingId(rating.getString("rating_id"));
                 ratingEntity.setMark(rating.getInteger("mark"));
                 ratingEntity.setComment(rating.getString("comment"));
                 ratingEntity.setItemId(rating.getString("item_id"));
                 ratingEntity.setUserId(rating.getString("user_id"));
+                ratingEntity.setSubTransactionId(subtransaction.getString("subtransaction_id"));
                 ratingEntity.setRatingDate(new java.sql.Date(new SimpleDateFormat(DATE_FORMAT).parse(rating.getString("rating_date")).getTime()));
                 ratingDao.save(ratingEntity);
             }
+            
         } catch (Exception ex) {
             Logger.getLogger(DataInitialization.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam name="s" value="#{searchController.searchStr}" />
+        <f:viewAction action="#{searchController.excuteSearch()}"/>
+    </f:metadata>
+    <h:head>
+        <title>Girly - Result</title>
+        <meta name="author" content="Monica"></meta>
+    </h:head>
+    
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-bottom: 20px;">
+        <ui:include src="/common/navbar.xhtml"/>
+        
+        
+        <b:container>
+            <b:jumbotron>
+                <div style="margin-bottom:30px">
+                    <ui:include src="/common/search.xhtml"/>
+                </div>
+                
+                <div style="padding-top: 20px; padding-left: 40px"> 
+                    <h:form>
+                        <b:container>
+                            <b:row>
+                                <b:column col-md="5">
+                                    <b:panelGrid colSpans="3,9">
+                                        <p>Category:</p>
+                                        <b:selectMultiMenu value="category" id="categoryId">
+                                            <f:selectItem itemLabel="T-shirts" itemValue="1"/>
+                                            <f:selectItem itemLabel="dresses" itemValue="2"/>
+                                            <f:selectItem itemLabel="sweatshirts" itemValue="3"/>
+                                            <f:selectItem itemLabel="sweaters" itemValue="4"/>
+                                            <f:selectItem itemLabel="skirts" itemValue="5"/>
+                                            <f:selectItem itemLabel="jeans" itemValue="6"/>
+                                        </b:selectMultiMenu>
+                                        <h:message for="categoryId"/>
+                                    </b:panelGrid>
+                                </b:column>
+                                <b:column col-md="5">
+                                    <b:panelGrid colSpans="3,9">
+                                        <p>Style:</p>
+                                        <b:selectMultiMenu value="style" id="styleId">
+                                            <f:selectItem itemLabel="casual" itemValue="1"/>
+                                            <f:selectItem itemLabel="boho" itemValue="2"/>
+                                            <f:selectItem itemLabel="sexy" itemValue="3"/>
+                                            <f:selectItem itemLabel="glamorous" itemValue="4"/>
+                                            <f:selectItem itemLabel="sporty" itemValue="5"/>
+                                            <f:selectItem itemLabel="others" itemValue="6"/>
+                                        </b:selectMultiMenu>
+                                        <h:message for="styleId"/>
+                                    </b:panelGrid>
+                                </b:column>
+                                <b:column col-md="2">
+                                     <b:commandButton action="a" value="Filter!" size="lg"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column col-md="5">
+                                    <b:panelGrid colSpans="3,9">
+                                        <p>Color:</p>
+                                        <b:selectMultiMenu value="color" id="colorId">
+                                            <f:selectItem itemLabel="black" itemValue="1"/>
+                                            <f:selectItem itemLabel="white" itemValue="2"/>
+                                            <f:selectItem itemLabel="pink" itemValue="3"/>
+                                            <f:selectItem itemLabel="blue" itemValue="4"/>
+                                            <f:selectItem itemLabel="grey" itemValue="5"/>
+                                            <f:selectItem itemLabel="red" itemValue="6"/>
+                                            <f:selectItem itemLabel="others" itemValue="7"/>
+                                        </b:selectMultiMenu>
+                                        <h:message for="colorId"/>
+                                    </b:panelGrid>
+                                </b:column>
+                                <b:column col-md="5">
+                                    <b:panelGrid colSpans="3,9">
+                                        <p>Season:</p>
+                                        <b:selectMultiMenu value="season" id="seasonId">
+                                            <f:selectItem itemLabel="spring" itemValue="1"/>
+                                            <f:selectItem itemLabel="summer" itemValue="2"/>
+                                            <f:selectItem itemLabel="fall" itemValue="3"/>
+                                            <f:selectItem itemLabel="winter" itemValue="4"/>
+                                        </b:selectMultiMenu>
+                                        <h:message for="seasonId"/>
+                                    </b:panelGrid>
+                                </b:column>
+                            </b:row>
+                              
+                        </b:container>
+                    </h:form>             
+                </div>
+            </b:jumbotron>
+        </b:container>
+        
+        <b:container>
+            <b:row>
+                <ui:repeat var="item" value="#{searchController.itemList}" varStatus="status">
+                    <b:column col-md="3" col-sm="4" col-xs="12">
+                        <b:thumbnail>
+                            <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
+                                <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
+                                <p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
+                                <p style="font-family: Monospaced">Mark: 
+                                    <h:outputText value="#{searchController.itemMarks[status.index]}">
+                                        <f:convertNumber pattern="#0.00"/>
+                                    </h:outputText>
+                                </p>
+                            </a>
+                            <strong>US$#{item.price}</strong>
+                        </b:thumbnail>
+                    </b:column>
+                </ui:repeat>
+            </b:row>
+            
+        </b:container>
+        <hr/>
+        <footer style="text-align: center;">
+            <p>© Girly 2019</p>
+        </footer>
+    </h:body>
+</html>

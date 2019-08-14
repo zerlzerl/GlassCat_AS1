@@ -36,6 +36,8 @@ public class RatingEntity implements Serializable {
     private String userId;
     @Column(name = "item_id")
     private String itemId;
+    @Column(name = "sub_transaction_id")
+    private String subTransactionId;
     @Column(name = "mark")
     private Integer mark;
     @Column(name = "comment", length = 1023)
@@ -104,6 +106,14 @@ public class RatingEntity implements Serializable {
         this.ratingDate = ratingDate;
     }
 
+    public String getSubTransactionId() {
+        return subTransactionId;
+    }
+
+    public void setSubTransactionId(String subTransactionId) {
+        this.subTransactionId = subTransactionId;
+    }
+    
     public String getExtend1() {
         return extend1;
     }
