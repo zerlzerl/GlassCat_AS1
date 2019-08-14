@@ -86,13 +86,17 @@ public class DetailController implements Serializable {
         this.ratings = ratingDao.findRatingsByItemId(this.productId);
         float sum = 0.0f;
         usernames = new ArrayList();
-        for(RatingEntity r : ratings) {
+        if(ratings != null && ratings.size() != 0) {
+            for(RatingEntity r : ratings) {
             UserEntity u = userDao.findById(r.getUserId());
             usernames.add(u.getUserName());
             sum += r.getMark();
-            
         }
         this.averageMark = sum / ratings.size();
+        } else {
+            this.averageMark = 0.00f;
+        }
+        
     }
     
     public void buy() {
