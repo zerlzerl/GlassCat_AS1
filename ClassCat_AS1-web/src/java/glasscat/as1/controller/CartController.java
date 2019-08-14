@@ -9,6 +9,7 @@ import glasscat.as1.dao.impl.CartDao;
 import glasscat.as1.dao.impl.ItemDao;
 import glasscat.as1.entity.CartEntity;
 import glasscat.as1.entity.ItemEntity;
+import glasscat.as1.util.Constants;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -67,6 +68,14 @@ public class CartController implements Serializable {
         return itemEntities;
     }
 
-
+    public String removeItem(Integer index) {
+        System.out.println("You remove " + index);
+        this.cartDao.delete(cartRecords.get(index));
+        return "/" + Constants.CART_PAGE + "?faces-redirect=true";
+    }
+    
+    public void checkout() {
+    
+    }
 
 }

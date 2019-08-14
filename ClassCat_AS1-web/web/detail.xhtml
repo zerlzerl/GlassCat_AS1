@@ -82,12 +82,12 @@
                 <b:row>
                     <b:column col-md="3">
                         <h6>#{detailController.usernames[status.index]}</h6>
-                        <h6>rating: #{rating.mark}</h6>
+                        <s>rating: #{rating.mark}</s>
                         <p>#{rating.ratingDate}</p>
                     </b:column>
                     <b:column col-md="9">
                         <br/>
-                        <p>#{rating.comment.length() eq 0 ? 'Good' : rating.comment}</p>
+                        <h5>#{rating.comment.length() eq 0 ? 'Good' : rating.comment}</h5>
                     </b:column>
                 </b:row>  
             </b:container>
