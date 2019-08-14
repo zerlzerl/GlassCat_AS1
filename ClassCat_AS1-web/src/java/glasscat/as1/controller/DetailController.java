@@ -19,6 +19,7 @@ import glasscat.as1.entity.SubTransactionEntity;
 import glasscat.as1.entity.TransactionEntity;
 import glasscat.as1.entity.UserEntity;
 import glasscat.as1.service.TransactionService;
+import glasscat.as1.util.Constants;
 import glasscat.as1.util.IDUtil;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -28,6 +29,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -53,6 +55,8 @@ public class DetailController implements Serializable {
     private UserDao userDao;
     @EJB
     private TransactionService transactionService;
+    @Inject
+    private LoginController loginController;
     /**
      * Creates a new instance of DetailController
      */
@@ -86,21 +90,22 @@ public class DetailController implements Serializable {
     
     public void buy() {
         try {
-            transactionService.saveSingleTransaction(this.productId, "1234123454", this.count);
+            transactionService.saveSingleTransaction(this.productId, loginController.getCurrentUserId(), this.count);
         } catch (Exception ex) {
             Logger.getLogger(DetailController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void addCart() {
+    public String addCart() {
 //        System.out.println(this.count + "");
         CartEntity cartEntity = new CartEntity();
         cartEntity.setCartId(IDUtil.getUUID());
         cartEntity.setCount(this.count);
-        cartEntity.setUserId("12345678");
+        cartEntity.setUserId(loginController.getCurrentUserId());
         cartEntity.setItemId(this.productId);
         cartDao.save(cartEntity);
         System.out.println("successfully add to cart");
+        return "/" + Constants.CART_PAGE + "?faces-redirect=true";
     }
 
     public ItemEntity getItemEntity() {
