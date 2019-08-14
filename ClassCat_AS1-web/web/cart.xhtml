@@ -15,44 +15,77 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <ui:include src="/common/navbar.xhtml"/>
+        <div style="padding-top: 20px"> 
+            <b:container>
+                <b:jumbotron>
+                    <div style="margin-bottom:30px">
+                        <h1 style="text-align: center">My Cart</h1>
+                    </div> 
+                    <ui:repeat var="cart" value="#{cartController.cartRecords}" varStatus="status">
+                        <b:panel title="US$#{cartController.itemEntities[status.index].price}  #{cartController.itemEntities[status.index].title}" look="Primary" collapsible="false">
+                            <b:container>
+                                <b:row>
+                                    <b:column col-md="4">
+                                        <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{cartController.itemEntities[status.index].id}">
+                                            <b:image name="itemImgThumb" value="https:#{cartController.itemEntities[status.index].imageUrlThumb}"/>
+                                        </a>
+                                        </b:column>
+                                    <b:column col-md="4">
+                                        <div>
+                                            <h5>Stock:</h5>
+                                            <p>#{cartController.itemEntities[status.index].stock}</p>
+                                            <h5>Color:</h5>
+                                            <p>#{cartController.itemEntities[status.index].color}</p>
+                                            <h5>Style:</h5>
+                                            <p>#{cartController.itemEntities[status.index].style}</p>
+                                            <h5>Season:</h5>
+                                            <p>#{cartController.itemEntities[status.index].season}</p>
+                                        </div>
+                                    </b:column>
+                                    <b:column col-md="4">
+                                        <h3>
+                                            Quantity: #{cart.count}
+                                        </h3>
+                                        <div style="padding-top: 60px">
+                                            <h:form>
+                                                <b:commandButton look="danger" value="Remove" size="lg" action="#{cartController.removeItem(status.index)}"/>  
+                                            </h:form>
+                                        </div>
+                                    </b:column>
+                                </b:row>
+                            </b:container>
+                        </b:panel>
+                    </ui:repeat>
+                </b:jumbotron>
+            </b:container>
+        </div>
         
         <b:container>
-            <b:jumbotron>
-                <ui:repeat var="cart" value="#{cartController.cartRecords}" varStatus="status">
-                    <b:panel title="US$#{cartController.itemEntities[status.index].price}  #{cartController.itemEntities[status.index].title}" look="Primary" collapsible="false">
-                        <b:container>
-                            <b:row>
-                                <b:column col-md="4">
-                                    <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{cartController.itemEntities[status.index].id}">
-                                        <b:image name="itemImgThumb" value="https:#{cartController.itemEntities[status.index].imageUrlThumb}"/>
-                                    </a>
-                                    </b:column>
-                                <b:column col-md="4">
-                                    <div>
-                                        <h5>Stock:</h5>
-                                        <p>#{cartController.itemEntities[status.index].stock}</p>
-                                        <h5>Color:</h5>
-                                        <p>#{cartController.itemEntities[status.index].color}</p>
-                                        <h5>Style:</h5>
-                                        <p>#{cartController.itemEntities[status.index].style}</p>
-                                        <h5>Season:</h5>
-                                        <p>#{cartController.itemEntities[status.index].season}</p>
-                                    </div>
-                                </b:column>
-                                <b:column col-md="4">
-                                    <h3>
-                                        Quantity: #{cart.count}
-                                    </h3>
-                                </b:column>
-                            </b:row>
-                        </b:container>
-                    </b:panel>
-                </ui:repeat>
-                
-                
-                
-            </b:jumbotron>
-        </b:container>
+            <b:row>
+                <div style="border-bottom: 1px solid #505050">
+                    <h2>Total</h2>
+                </div>
+            </b:row>
+            <b:row>
+                <b:column col-md="8">
+                    
+                </b:column>
+                <b:column col-md="4">
+                    <h3>US$#{cartController.total}</h3>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column col-md="8">
+                    
+                </b:column>
+                <b:column col-md="4">
+                    <h:form>
+                        <b:commandButton look="success" style="width: 120px" value="Checkout" size="lg" action="#{cartController.checkout()}"/>
+                    </h:form>
+                </b:column>
+            </b:row>
+        </b:container>  
+        
         <footer style="text-align: center;">
             <p>© Girly 2019</p>
         </footer>

@@ -53,7 +53,9 @@
                                     <h:form>
                                         <b:panelGrid columns="3">
                                             <b:form>
-                                                <b:inputText id="count" value="#{detailController.count}"/>
+                                                <b:inputText id="count" value="#{detailController.count}" validator-message="Tooooo much!">
+                                                    <f:validateLongRange minimum="1" maximum="#{detailController.avalible}"/>
+                                                </b:inputText><b:message for="@previous"/>
                                             </b:form>
                                             <b:commandButton action="#{detailController.addCart()}" value="Add to cart" look="warning" size="lg"/>
                                             <b:commandButton onclick="alert('Sucessfully bought.')" action="#{detailController.buy()}" value="Buy it now" look="danger" size="lg"/>
@@ -82,12 +84,12 @@
                 <b:row>
                     <b:column col-md="3">
                         <h6>#{detailController.usernames[status.index]}</h6>
-                        <h6>rating: #{rating.mark}</h6>
+                        <p>rating: #{rating.mark}</p>
                         <p>#{rating.ratingDate}</p>
                     </b:column>
                     <b:column col-md="9">
                         <br/>
-                        <p>#{rating.comment.length() eq 0 ? 'Good' : rating.comment}</p>
+                        <h5>#{rating.comment.length() eq 0 ? 'Good' : rating.comment}</h5>
                     </b:column>
                 </b:row>  
             </b:container>

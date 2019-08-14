@@ -9,6 +9,7 @@ import glasscat.as1.dao.impl.CartDao;
 import glasscat.as1.dao.impl.ItemDao;
 import glasscat.as1.entity.CartEntity;
 import glasscat.as1.entity.ItemEntity;
+import glasscat.as1.util.Constants;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import javax.inject.Inject;
 public class CartController implements Serializable {
     private List<CartEntity> cartRecords;
     private List<ItemEntity> itemEntities;
+    private Double total = 0.00d;
     @EJB
     private CartDao cartDao;
     @EJB
@@ -46,10 +48,12 @@ public class CartController implements Serializable {
         this.cartRecords = cartDao.findCartRecordsByUserId(loginController.getCurrentUserId());
         
         System.out.println(cartRecords.size());
-        this.itemEntities = new ArrayList<>(cartRecords.size());
         if(cartRecords != null && cartRecords.size() > 0) {
+            this.itemEntities = new ArrayList<>(cartRecords.size());
             for(CartEntity c : cartRecords) {
-                this.itemEntities.add(itemDao.findById(c.getItemId()));
+                ItemEntity cartItem = itemDao.findById(c.getItemId());
+                this.itemEntities.add(cartItem);
+                total += cartItem.getPrice() * c.getCount();
             }
         } else {
             System.err.println("Empty cart!");
@@ -67,6 +71,18 @@ public class CartController implements Serializable {
         return itemEntities;
     }
 
+    public Double getTotal() {
+        return total;
+    }
 
+    public String removeItem(Integer index) {
+        System.out.println("You remove " + index);
+        this.cartDao.delete(cartRecords.get(index));
+        return "/" + Constants.CART_PAGE + "?faces-redirect=true";
+    }
+    
+    public void checkout() {
+        
+    }
 
 }
