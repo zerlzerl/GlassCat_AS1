@@ -102,8 +102,8 @@
                 <ui:repeat var="item" value="#{searchController.itemList}" varStatus="status">
                     <b:column col-md="3" col-sm="4" col-xs="12">
                         <b:thumbnail>
-                            <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
                             <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
+                                <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
                                 <p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
                                 <p style="font-family: Monospaced">Mark: 
                                     <h:outputText value="#{searchController.itemMarks[status.index]}">
