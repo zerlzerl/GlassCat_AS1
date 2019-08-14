@@ -55,7 +55,7 @@
                                             <b:form>
                                                 <b:inputText id="count" value="#{detailController.count}"/>
                                             </b:form>
-                                            <b:commandButton onclick="alert('Sucessfully added to cart.')" action="#{detailController.addCart()}" value="Add to cart" look="warning" size="lg"/>
+                                            <b:commandButton action="#{detailController.addCart()}" value="Add to cart" look="warning" size="lg"/>
                                             <b:commandButton onclick="alert('Sucessfully bought.')" action="#{detailController.buy()}" value="Buy it now" look="danger" size="lg"/>
                                         </b:panelGrid>
                                     </h:form> 
