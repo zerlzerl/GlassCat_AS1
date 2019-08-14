@@ -92,7 +92,7 @@ public class LoginController extends AdminSession implements Serializable {
     
     public String logout() {
         System.out.println("Logout");
-        setIsLoggedIn(false);
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/" + Constants.LOGIN_PAGE + "?faces-redirect=true";
     }
     

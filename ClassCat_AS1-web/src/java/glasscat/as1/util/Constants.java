@@ -31,5 +31,9 @@ public interface Constants {
     String PASSWD_VALIDATION_REGEX = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,20})";
     String PROTOCOL = "http"; //change to https if needed
     
+    String VISITOR = "Visitor";
+    String CUSTOMER = "Customer";
+    String MANAGER = "Manager";
+    String ADMIN = "Administrator";
     Boolean IS_ENABLE_LOGIN_FILTER = true; // trigger to enable the login filter
 }

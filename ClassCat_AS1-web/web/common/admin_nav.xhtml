@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+this file is the hearder template
+-->
+<!DOCTYPE html>
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui">
+    
+    <b:column col-sm="3" col-md="2" styleClass="sidebar">
+        <b:listLinks>
+            <b:navLink header="All Functions" />
+            <b:navLink icon="user" href="#{request.contextPath}/admin.jsf" value="Profile" 
+                       active="#{adminController.currentPage.contains('/admin.jsf') ? 'true' : 'false'}"/>
+            <b:navLink icon="time" href="#{request.contextPath}/admin/historical_purchase.jsf" value="Historical Purchase" 
+                       active="#{adminController.currentPage.contains('/admin/historical_purchase.jsf') ? 'true' : 'false'}"
+                       rendered="#{adminController.msl gt 0}"/>
+            <b:navLink icon="list-alt" href="#{request.contextPath}/admin/user_management.jsf" value="User Management" 
+                       active="#{adminController.currentPage.contains('/admin/user_management.jsf') ? 'true' : 'false'}"
+                       rendered="#{adminController.msl gt 1}"/>
+            <b:navLink icon="tags" href="#{request.contextPath}/admin/item_management.jsf" value="Item Management" 
+                       active="#{adminController.currentPage.contains('/admin/item_management.jsf') ? 'true' : 'false'}"
+                       rendered="#{adminController.msl gt 2}"/>
+        </b:listLinks>
+    </b:column>
+</ui:composition>

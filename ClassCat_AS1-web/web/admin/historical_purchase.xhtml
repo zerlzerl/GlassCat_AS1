@@ -16,17 +16,9 @@
         
         <b:container fluid="true">
             <b:row>
-                <b:column col-sm="3" col-md="2" styleClass="sidebar">
-                    <b:listLinks>
-                        <b:navLink header="All Functions" />
-                        <b:navLink icon="user" href="../admin.jsf" value="Profile" />
-                        <b:navLink icon="time" value="Historical Purchase" active="true" />
-                        <b:navLink icon="list-alt" href="user_management.jsf" value="User Management" />
-                        <b:navLink icon="tags" href="item_management.jsf" value="Item Management" />
-                    </b:listLinks>
-                </b:column>
+                <ui:include src="/common/admin_nav.xhtml"/>
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    Historical Purchase
+                    #{adminController.currentPage}
                 </b:column>
             </b:row>
         </b:container> 
