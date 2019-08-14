@@ -33,5 +33,6 @@ public class UserDao extends BaseDaoImpl<UserEntity>{
                 .setParameter("userName", username)
                 .getResultList();
     }
+    
 
 }

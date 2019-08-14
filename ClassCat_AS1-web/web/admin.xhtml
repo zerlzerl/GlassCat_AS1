@@ -41,17 +41,37 @@
                             <b:form>
                                 
                                 <b:row>
-                                    <b:column offset="1" col-md="4"><b:inputText value="#{adminController.username}" placeholder="User Name..." label="Enter your user name:"/></b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.username}" placeholder="User Name..." label="Enter your user name:" validator="#{adminController.usernameValidator}"/>
+                                        <b:message for="@previous"/>
+                                    </b:column>
                                 </b:row>
                                 <b:row>
-                                    <b:column offset="1" col-md="4"><b:inputText value="#{adminController.firstName}" placeholder="First Name..." label="Enter your first name:"/></b:column>
-                                    <b:column offset="1" col-md="4"><b:inputText value="#{adminController.lastName}" placeholder="Last Name..." label="Enter your last name:"/></b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.firstName}" placeholder="First Name..." label="Enter your first name:" 
+                                                     validator-message="Not a valid first name">
+                                            <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                        <!-- this pattern supports only English names -->
+                                    </b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.lastName}" placeholder="Last Name..." label="Enter your last name:"
+                                                     validator-message="Not a valid last name">
+                                            <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                    </b:column>
                                 </b:row>
                                 <b:row>
                                     <b:column offset="1" col-md="9"><b:inputText value="#{adminController.address}" placeholder="Address..." label="Enter your address:"/></b:column>
                                 </b:row>
                                 <b:row>
-                                    <b:column offset="1" col-md="4"><b:inputText value="#{adminController.phoneNo}" placeholder="Phone No..." label="Enter your phone No.:"/></b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{adminController.phoneNo}" placeholder="Phone No..." label="Enter your phone No.:">
+                                            <f:validateRegex pattern=""/>
+                                        </b:inputText>
+                                    </b:column>
                                     <b:column offset="1" col-md="4">
                                         <p class=" control-label"><b>Select your gender:</b></p>
                                         <b:panelGrid size="md" columns="4">
