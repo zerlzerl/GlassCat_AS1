@@ -19,6 +19,7 @@ public interface Constants {
     
     String ADMIN_PAGE = "admin.jsf";  //back end management page
     String HISTORY_PAGE = "admin/historical_purchase.jsf";
+    String TRANS_MANAGE_PAGE = "admin/transaction_management.jsf";
     String ITEM_MANAGE_PAGE = "admin/item_management.jsf";
     String USER_MANAGE_PAGE = "admin/user_management.jsf";
     

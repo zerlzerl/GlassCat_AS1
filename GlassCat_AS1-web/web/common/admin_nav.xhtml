@@ -17,6 +17,9 @@ this file is the hearder template
             <b:navLink icon="time" href="#{request.contextPath}/admin/historical_purchase.jsf" value="Historical Purchase" 
                        active="#{adminController.currentPage.contains('/admin/historical_purchase.jsf') ? 'true' : 'false'}"
                        rendered="#{loginController.membershipLevel gt 0}"/>
+            <b:navLink icon="inbox" href="#{request.contextPath}/admin/transaction_management.jsf" value="Transaction Management" 
+                       active="#{adminController.currentPage.contains('/admin/transaction_management.jsf') ? 'true' : 'false'}"
+                       rendered="#{loginController.membershipLevel gt 1}"/>
             <b:navLink icon="list-alt" href="#{request.contextPath}/admin/user_management.jsf" value="User Management" 
                        active="#{adminController.currentPage.contains('/admin/user_management.jsf') ? 'true' : 'false'}"
                        rendered="#{loginController.membershipLevel gt 1}"/>
