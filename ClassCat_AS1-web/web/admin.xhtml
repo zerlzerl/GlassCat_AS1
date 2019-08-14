@@ -68,9 +68,11 @@
                                 </b:row>
                                 <b:row>
                                     <b:column offset="1" col-md="4">
-                                        <b:inputText value="#{adminController.phoneNo}" placeholder="Phone No..." label="Enter your phone No.:">
-                                            <f:validateRegex pattern=""/>
+                                        <b:inputText value="#{adminController.phoneNo}" placeholder="Phone No..." label="Enter your phone No.:" validator-message="Not a valid phone number.">
+                                            <f:validateRegex pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"/>
+                                            <!-- This pattern supports (123) 456 7899 (123).456.7899 (123)-456-7899 123-456-7899 123 456 7899 1234567899 -->
                                         </b:inputText>
+                                        <b:message for="@previous"/>
                                     </b:column>
                                     <b:column offset="1" col-md="4">
                                         <p class=" control-label"><b>Select your gender:</b></p>
@@ -86,19 +88,15 @@
                                                           value="#{adminController.birthday}"/>
                                     </b:column>
                                     <b:column offset="1" col-md="4">
-                                        <b:selectOneMenu value="#{adminController.profession}" required="true" label="Select your profession:">
-                                            <f:selectItem itemLabel="(Please select)" itemValue="0" />
-                                            <f:selectItem itemLabel="Cinquecento" itemValue="1" />
-                                            <f:selectItem itemLabel="Civic" itemValue="2" />
-                                            <f:selectItem itemLabel="Astra" itemValue="3" />
-                                            <f:selectItem itemLabel="Megane" itemValue="4" />
+                                        <b:selectOneMenu value="#{adminController.profession}" select2="true" label="Select your profession:">
+                                            <f:selectItems value="#{adminController.professionList}"/>
                                         </b:selectOneMenu>
                                     </b:column>
                                     
                                 </b:row>
                                 <b:row>
                                     <b:column span="3" offset="2">
-                                    <b:commandButton value="Save" look="primary" style="width:100%" />
+                                    <b:commandButton value="Save" look="primary" style="width:100%" action="#{adminController.saveProfile}"/>
                                     </b:column>                                
                                 </b:row>
                             </b:form>                            

@@ -16,13 +16,13 @@ this file is the hearder template
                        active="#{adminController.currentPage.contains('/admin.jsf') ? 'true' : 'false'}"/>
             <b:navLink icon="time" href="#{request.contextPath}/admin/historical_purchase.jsf" value="Historical Purchase" 
                        active="#{adminController.currentPage.contains('/admin/historical_purchase.jsf') ? 'true' : 'false'}"
-                       rendered="#{adminController.msl gt 0}"/>
+                       rendered="#{loginController.membershipLevel gt 0}"/>
             <b:navLink icon="list-alt" href="#{request.contextPath}/admin/user_management.jsf" value="User Management" 
                        active="#{adminController.currentPage.contains('/admin/user_management.jsf') ? 'true' : 'false'}"
-                       rendered="#{adminController.msl gt 1}"/>
+                       rendered="#{loginController.membershipLevel gt 1}"/>
             <b:navLink icon="tags" href="#{request.contextPath}/admin/item_management.jsf" value="Item Management" 
                        active="#{adminController.currentPage.contains('/admin/item_management.jsf') ? 'true' : 'false'}"
-                       rendered="#{adminController.msl gt 2}"/>
+                       rendered="#{loginController.membershipLevel gt 2}"/>
         </b:listLinks>
     </b:column>
 </ui:composition>

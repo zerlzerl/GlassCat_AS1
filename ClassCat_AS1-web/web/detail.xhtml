@@ -50,7 +50,7 @@
                                     <h5>Quantity:</h5>
                                 </div>
                                 <div>
-                                    <h:form>
+                                    <h:form rendered="#{loginController.membershipLevel gt 0}">
                                         <b:panelGrid columns="3">
                                             <b:form>
                                                 <b:inputText id="count" value="#{detailController.count}" validator-message="Tooooo much!">

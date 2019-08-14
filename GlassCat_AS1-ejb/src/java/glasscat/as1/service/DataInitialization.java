@@ -110,6 +110,7 @@ public class DataInitialization {
                 userEntity.setPassword(user.getString("password"));
                 userEntity.setPhoneNumber(user.getString("phone_number"));
                 userEntity.setUserName(user.getString("user_name"));
+                userEntity.setProfession(user.getString("profession"));
                 userDao.save(userEntity);
             }
             System.out.println("############ init item information");

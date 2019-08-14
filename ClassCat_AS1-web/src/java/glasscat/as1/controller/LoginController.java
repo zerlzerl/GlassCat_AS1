@@ -79,6 +79,7 @@ public class LoginController extends AdminSession implements Serializable {
                 this.userName = u.getUserName() == null ? null : u.getUserName();
                 this.setIsLoggedIn(true);
                 this.setCurrentUserId(u.getId());
+                System.out.println(u.getMembershipLevel());
                 this.setMembershipLevel(u.getMembershipLevel());
             } else {
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login fail.", "Please ensure your email/username and password.");
@@ -92,6 +93,9 @@ public class LoginController extends AdminSession implements Serializable {
     
     public String logout() {
         System.out.println("Logout");
+        setIsLoggedIn(false);
+        setUserName(null);
+        setMembershipLevel(0);
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/" + Constants.LOGIN_PAGE + "?faces-redirect=true";
     }
