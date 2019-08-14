@@ -27,10 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.web.WebEvent;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+import net.bootsfaces.component.alert.Alert;
 
 /**
  *
@@ -41,6 +46,7 @@ import javax.inject.Named;
 public class DetailController implements Serializable {
     private String productId;
     private ItemEntity itemEntity;
+    private Integer avalible;
     private List<RatingEntity> ratings;
     private List<String> usernames;
     private float averageMark;
@@ -76,6 +82,7 @@ public class DetailController implements Serializable {
         System.out.println(this.productId);
 //        itemDao.setClazz(ItemEntity.class);
         this.itemEntity = itemDao.findById(this.productId);
+        this.avalible = this.itemEntity.getStock() - cartDao.cartCombine(this.itemEntity.getId(), this.loginController.getCurrentUserId());
         this.ratings = ratingDao.findRatingsByItemId(this.productId);
         float sum = 0.0f;
         usernames = new ArrayList();
@@ -107,7 +114,6 @@ public class DetailController implements Serializable {
         System.out.println("successfully add to cart");
         return "/" + Constants.CART_PAGE + "?faces-redirect=true";
     }
-
     public ItemEntity getItemEntity() {
         return itemEntity;
     }
@@ -131,6 +137,10 @@ public class DetailController implements Serializable {
 
     public List<String> getUsernames() {
         return usernames;
+    }
+
+    public Integer getAvalible() {
+        return avalible;
     }
 
     

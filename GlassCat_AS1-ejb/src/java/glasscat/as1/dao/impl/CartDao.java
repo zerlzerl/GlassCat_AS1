@@ -44,6 +44,15 @@ public class CartDao extends BaseDaoImpl<CartEntity>{
 //                .setParameter("itemId", ItemId)
 //                .getSingleResult();
     }
+    public Integer cartCombine (String ItemId, String userId) {
+        CartEntity cart = this.findCartByItemIdAndUserId(ItemId, userId);
+        if (cart == null) {
+            return 0;
+        } else {
+            return cart.getCount();
+        }
+    }
+    
     @Override
     public void save(CartEntity inputCart) {
         CartEntity cart = this.findCartByItemIdAndUserId(inputCart.getItemId(), inputCart.getUserId());

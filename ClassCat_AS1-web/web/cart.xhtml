@@ -19,7 +19,7 @@ and open the template in the editor.
             <b:container>
                 <b:jumbotron>
                     <div style="margin-bottom:30px">
-                        <h1 style="text-align: center">My cart</h1>
+                        <h1 style="text-align: center">My Cart</h1>
                     </div> 
                     <ui:repeat var="cart" value="#{cartController.cartRecords}" varStatus="status">
                         <b:panel title="US$#{cartController.itemEntities[status.index].price}  #{cartController.itemEntities[status.index].title}" look="Primary" collapsible="false">
@@ -71,7 +71,7 @@ and open the template in the editor.
                     
                 </b:column>
                 <b:column col-md="4">
-                    <h3>US$154.00</h3>
+                    <h3>US$#{cartController.total}</h3>
                 </b:column>
             </b:row>
             <b:row>
