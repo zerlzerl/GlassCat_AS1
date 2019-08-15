@@ -68,12 +68,13 @@
                                     </b:column>
                                     <b:column offset="1" col-md="4">
                                         <br/>
-                                        <b:commandButton value="Search Users!" look="success" style="width:100%" ajax="true" onclick="i18nBcarPool2Widget.DataTable().destroy();" action="#{userManagementController.executeSearch()}" update="dataTable"/>
+                                        <b:commandButton value="Search Users!" look="success" style="width:100%" 
+                                                          ajax="true" update="@(usersTable)"/>
                                     </b:column>
                                 </b:row>
                                 <b:row style="margin-top: 20px;">
                                     <b:column offset="1" col-md="9">
-                                        <b:dataTable value="#{userManagementController.resultUsers}" var="user" auto-update="true" id="dataTable">
+                                        <b:dataTable value="#{userManagementController.resultUsers}" var="user" auto-update="true" id="usersTable">
                                             <b:dataTableColumn label="User ID" value="#{user.id}" />
                                             <b:dataTableColumn label="Email" value="#{user.email}" />
                                             <b:dataTableColumn label="Last Name" value="#{user.lastName}" />
