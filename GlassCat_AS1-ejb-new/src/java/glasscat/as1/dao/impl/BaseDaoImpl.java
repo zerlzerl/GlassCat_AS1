@@ -39,6 +39,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements Dao<T> {
     public void delete(T object) {
         T t = this.entityManager.merge(object);
         this.entityManager.remove(t);
+        entityManager.flush();
     }
 
     @Override
@@ -50,6 +51,7 @@ public abstract class BaseDaoImpl<T extends Serializable> implements Dao<T> {
     @Override
     public void update(T object) {
         entityManager.merge(object);
+        entityManager.flush();
     }
 
     @Override

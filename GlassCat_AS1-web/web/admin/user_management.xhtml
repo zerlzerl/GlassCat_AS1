@@ -69,23 +69,52 @@
                                     <b:column offset="1" col-md="4">
                                         <br/>
                                         <b:commandButton value="Search Users!" look="success" style="width:100%" 
-                                                          ajax="true" update="@(usersTable)"/>
+                                                          ajax="true" onclick="ajax:userManagementController.executeSearch();javascript:return false;"/>
                                     </b:column>
                                 </b:row>
                                 <b:row style="margin-top: 20px;">
-                                    <b:column offset="1" col-md="9">
+                                    <b:column col-md="10">
                                         <b:dataTable value="#{userManagementController.resultUsers}" var="user" auto-update="true" id="usersTable">
                                             <b:dataTableColumn label="User ID" value="#{user.id}" />
                                             <b:dataTableColumn label="Email" value="#{user.email}" />
                                             <b:dataTableColumn label="Last Name" value="#{user.lastName}" />
                                             <b:dataTableColumn label="First Name" value="#{user.firstName}" />
+                                            <b:dataTableColumn label="Phone Number" value="#{user.phoneNumber}" />
                                             <b:dataTableColumn label="Membership" value="#{user.membershipLevel eq 3 ? 'Administrator' : 
                                                                                              user.membershipLevel eq 2 ? 'Manager' : 
                                                                                              user.membershipLevel eq 1 ? 'Customer' : 'Visitor'}" />
+                                            <b:dataTableColumn label="View" rendered="#{loginController.membershipLevel gt 1}"><!-- manager and administrator -->
+                                                <b:commandButton type="button" value="Info" ajax="true"
+                                                                 onclick="ajax:userManagementController.searchInfo(user.id);javascript:setTimeout(function(){ $('.modalPseudoClass').modal('show'); }, 1000);javascript:return false;">
+                                                </b:commandButton>
+                                            </b:dataTableColumn>
+                                            <b:dataTableColumn label="Edit" rendered="#{loginController.membershipLevel gt 1}"><!-- manager and administrator -->
+                                                <b:commandButton value="Edit" ajax="true" look="primary"
+                                                                 onclick="ajax:userManagementController.searchInfo(user.id);javascript:setTimeout(function(){ $('.modalPseudoClass2').modal('show'); }, 1000);javascript:return false;" >
+                                                </b:commandButton>
+                                            </b:dataTableColumn>                                            
+                                            
+                                            <b:dataTableColumn label="Upgrade" rendered="#{loginController.membershipLevel gt 1}"><!-- manager and administrator -->
+                                                <b:commandButton value="#{user.membershipLevel eq 0 ? 'Up to Customer' : user.membershipLevel eq 1 ? 'Up to Manager': 'Cannot Promote'}" look="success" ajax="true" update="@(usersTable)"
+                                                                 onclick="ajax:userManagementController.upgrade(user.id); javascript:return false;" disabled="#{user.membershipLevel eq 2}">
+                                                </b:commandButton>
+                                            </b:dataTableColumn>
+                                            
+                                            <b:dataTableColumn label="Downgrade" rendered="#{loginController.membershipLevel gt 1}"><!-- manager and administrator -->
+                                                <b:commandButton value="#{user.membershipLevel eq 2 ? 'Down to Customer' : user.membershipLevel eq 1 ? 'Down to Visitor': 'Cannot Down'}" look="warning" ajax="true" update="@(usersTable)"
+                                                                 onclick="ajax:userManagementController.downgrade(user.id); javascript:return false;" disabled="#{user.membershipLevel eq 0}">
+                                                </b:commandButton>
+                                            </b:dataTableColumn>
+                                            <b:dataTableColumn label="Delete" rendered="#{loginController.membershipLevel gt 2}"><!-- Administrator only-->
+                                                <b:commandButton value="Delete" look="danger" ajax="true" update="@(usersTable)"
+                                                                 onclick="ajax:userManagementController.delete(user.id); javascript:return false;" >
+                                                </b:commandButton>
+                                            </b:dataTableColumn>
                                         </b:dataTable>
                                         
                                     </b:column>
                                 </b:row>
+                                
                             </b:form>
                             <b:row><!-- row for content table -->
                                 
@@ -96,6 +125,82 @@
                 </b:column>
             </b:row>
         </b:container> 
+        <b:modal title="User Info" styleClass="modalPseudoClass">
+            <b:container auto-update="true">
+                <p class="h4"><b>User ID: </b>#{userManagementController.userForModal.id}</p>
+                <p class="h4"><b>User Email: </b>#{userManagementController.userForModal.email}</p>
+                <p class="h4"><b>User Membership: </b>#{userManagementController.userForModal.membershipLevel eq 3 ? 'Administrator' : 
+                                                                       userManagementController.userForModal.membershipLevel eq 2 ? 'Manager' : 
+                                                                       userManagementController.userForModal.membershipLevel eq 1 ? 'Customer' : 'Visitor'}</p>
+                <p class="h4"><b>User Name: </b>#{userManagementController.userForModal.userName}</p>
+                <p class="h4"><b>Last Name: </b>#{userManagementController.userForModal.lastName}</p>
+                <p class="h4"><b>First Name: </b>#{userManagementController.userForModal.firstName}</p>
+                <p class="h4"><b>User Brithday: </b>#{userManagementController.userForModal.birthday}</p>
+                <p class="h4"><b>User Address: </b>#{userManagementController.userForModal.address}</p>
+                <p class="h4"><b>User Gender: </b>#{userManagementController.userForModal.gender}</p>
+                <p class="h4"><b>User Phone Number: </b>#{userManagementController.userForModal.phoneNumber}</p>
+                <p class="h4"><b>User Profession: </b>#{userManagementController.userForModal.profession}</p>
+                <p class="h4"><b>Latest Purchase Time: </b>#{userManagementController.purchaseTime}</p>
+                <ui:repeat var="items" value="#{userManagementController.itemsForModal}" varStatus="status">
+                    <b:container>
+                                <p class="h4"><b>Price: </b>US$#{items.price}</p>
+                                <p class="h4"><b>Title: </b>#{items.title}</p>
+                                <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{items.id}">
+                                    <b:image name="itemImgThumb" value="https:#{items.imageUrlThumb}"/>
+                                </a>
+
+                    </b:container>
+                </ui:repeat>
+            </b:container>
+            
+            <f:facet name="footer">
+                <b:button value="Close" dismiss="modal" />
+                <b:button value="Ok" look="primary" dismiss="modal" />
+            </f:facet>
+        </b:modal>  
+        
+        <b:modal title="Edit User Information" styleClass="modalPseudoClass2">
+            <b:container auto-update="true">
+                <b:form>
+                    <b:row>
+                        <b:column col-md="4">
+                            <b:inputText value="#{userManagementController.userNameForModal}" placeholder="User Name..." label="User Name:">
+                            </b:inputText>
+                            <b:message for="@previous"/>
+                            <!-- this pattern supports only English names -->
+                        </b:column>
+                    </b:row>
+                    <b:row>                            
+                        <b:column col-md="4">
+                            <b:inputText value="#{userManagementController.userAddressForModal}" placeholder="Adress..." label="User Adress">
+                            </b:inputText>
+                            <b:message for="@previous"/>
+                        </b:column>
+                    </b:row>
+                    <b:row>                            
+                        <b:column col-md="4">
+<!--                            <b:commandButton value="Edit Users!" look="success" style="width:100%" 
+                                             ajax="true" onclick="ajax:userManagementController.update(); javascript:return false;"/>-->
+<!--                            <b:commandButton value="Edit Users!" ajax="true" look="primary"
+                                             onclick="ajax:userManagementController.update();javascript:setTimeout(function(){ $('.modalPseudoClass2').modal('show'); }, 1000);javascript:return false;" >
+                                                </b:commandButton>-->
+                        </b:column>
+                    </b:row>
+                    <b:fetchBeanInfos />
+                    <b:messages />
+                </b:form>
+            </b:container>
+            
+            <f:facet name="footer">
+                <b:button value="Close" dismiss="modal" />
+                <b:button id="editUserButton" value="Edit User" look="primary" dismiss="modal" />
+            </f:facet>
+        </b:modal> 
+        <script type="javascript/text">
+            $("#editUserButton").bind('click', function(){
+                alert("1");
+            })
+        </script>
         <style type="text/css">
         .sub-header {
             border-bottom: 1px solid #eee;

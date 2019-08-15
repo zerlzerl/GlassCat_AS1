@@ -15,5 +15,5 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface TransactionDao extends Dao<TransactionEntity> {
-    
+    public TransactionEntity findLatestTransactionByUserId(String userId);
 }

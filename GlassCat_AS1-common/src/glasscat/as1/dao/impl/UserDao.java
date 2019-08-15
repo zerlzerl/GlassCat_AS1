@@ -19,5 +19,5 @@ public interface UserDao extends Dao<UserEntity> {
     public List<UserEntity> findByEmail(String email);
     public List<UserEntity> findByUserName(String username);
     public List<String> findAllProfessions();
-    public List<UserEntity> findBy5Attributes(String userId, String email, String firstName, String lastName, String phoneNo);
+    public List<UserEntity> findBy5Attributes(String userId, String email, String firstName, String lastName, String phoneNo, Integer memberShipLevel);
 }

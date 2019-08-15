@@ -6,6 +6,7 @@
 package glasscat.as1.dao.impl;
 
 import glasscat.as1.entity.TransactionEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -17,6 +18,18 @@ public class TransactionDaoImpl extends BaseDaoImpl<TransactionEntity> implement
     
     public TransactionDaoImpl() {
         super(TransactionEntity.class);
+    }
+
+    @Override
+    public TransactionEntity findLatestTransactionByUserId(String userId) {
+        List<TransactionEntity> found = this.entityManager.createQuery("SELECT t FROM TransactionEntity t WHERE t.userId=:userId ORDER BY T.transactionDatetime DESC", TransactionEntity.class)
+                .setParameter("userId", userId)
+                .getResultList();
+        if (found != null && !found.isEmpty()) {
+            return found.get(0);
+        } else {
+            return null;
+        }
     }
     
 }

@@ -18,5 +18,5 @@ import javax.ejb.Remote;
 public interface SubTransactionDao extends Dao<SubTransactionEntity> {
 
     public List<SubTransactionEntity> findSubTransactionRecordsByUserId(String currentUserId);
-    
+    public List<SubTransactionEntity> findSubTransactionByTransactionId(String transactionId);
 }

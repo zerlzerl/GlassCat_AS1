@@ -41,4 +41,11 @@ public class SubTransacationDaoImpl extends BaseDaoImpl<SubTransactionEntity> im
         }
         return null;
     }
+
+    @Override
+    public List<SubTransactionEntity> findSubTransactionByTransactionId(String transactionId) {
+        return this.entityManager.createQuery("SELECT s from SubTransactionEntity s WHERE s.transactionId=:transactionId", SubTransactionEntity.class)
+                .setParameter("transactionId", transactionId)
+                .getResultList();
+    }
 }

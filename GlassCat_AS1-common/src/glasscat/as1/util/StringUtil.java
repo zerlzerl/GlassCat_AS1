@@ -31,4 +31,15 @@ public class StringUtil {
     public static boolean isValidName(String str) {
         return Pattern.matches(NAME_PATTERN, str);
     }
+    
+    public static boolean isBlank(Object object){
+        if (null == object) {
+            return true;
+        }
+        if ((object instanceof String)){
+            return "".equals(((String)object).trim());
+        }
+        return false;
+    }
+
 }

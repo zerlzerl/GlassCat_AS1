@@ -6,12 +6,14 @@
 package glasscat.as1.dao.impl;
 
 import glasscat.as1.entity.UserEntity;
+import glasscat.as1.util.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -47,26 +49,28 @@ public class UserDaoImpl extends BaseDaoImpl<UserEntity> implements UserDao {
     }
 
     @Override
-    public List<UserEntity> findBy5Attributes(String userId, String email, String firstName, String lastName, String phoneNumber) {
+    public List<UserEntity> findBy5Attributes(String userId, String email, String firstName, String lastName, String phoneNumber, Integer membershipLevel) {
         CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<UserEntity> query = criteriaBuilder.createQuery(UserEntity.class);
-        Root<UserEntity> userEntity = query.from(UserEntity.class);
+        Root<UserEntity> root = query.from(UserEntity.class);
         List<Predicate> predicatesList = new ArrayList<>();
-        if (userId != null) {
-            predicatesList.add(criteriaBuilder.equal(userEntity.get("id"), userId));
+        if (!StringUtil.isBlank(userId)) {
+            predicatesList.add(criteriaBuilder.like(root.get("id").as(String.class), "%" + userId + "%"));
         }
-        if (email != null) {
-            predicatesList.add(criteriaBuilder.equal(userEntity.get("email"), email));
+        if (!StringUtil.isBlank(email)) {
+            predicatesList.add(criteriaBuilder.like(root.get("email").as(String.class), "%" + email + "%"));
         }
-        if (firstName != null) {
-            predicatesList.add(criteriaBuilder.equal(userEntity.get("firstName"), firstName));
+        if (!StringUtil.isBlank(firstName)) {
+            predicatesList.add(criteriaBuilder.like(root.get("firstName").as(String.class), "%" + firstName + "%"));
         }
-        if (lastName != null) {
-            predicatesList.add(criteriaBuilder.equal(userEntity.get("lastName"), lastName));
+        if (!StringUtil.isBlank(lastName)) {
+            predicatesList.add(criteriaBuilder.like(root.get("lastName").as(String.class), "%" + lastName + "%"));
         }
-        if (phoneNumber != null) {
-            predicatesList.add(criteriaBuilder.equal(userEntity.get("phoneNumber"), phoneNumber));
+        if (!StringUtil.isBlank(phoneNumber)) {
+            predicatesList.add(criteriaBuilder.like(root.get("phoneNumber").as(String.class), "%" + phoneNumber + "%"));
         }
+        predicatesList.add(criteriaBuilder.lt(root.get("membershipLevel").as(Integer.class), membershipLevel));
+        System.out.println(predicatesList.size());
         query.where(predicatesList.toArray(new Predicate[predicatesList.size()]));
         TypedQuery<UserEntity> q = this.entityManager.createQuery(query);
         
