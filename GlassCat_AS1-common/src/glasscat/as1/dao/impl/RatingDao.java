@@ -19,4 +19,5 @@ import javax.ejb.Remote;
 public interface RatingDao extends Dao<RatingEntity> {
     public List<RatingEntity> findRatingsByItemId(String itemId);
     public double findAverageMarkByItemId(String itemId);
+    public RatingEntity findRatingBySubTransactionId(String subtransactionId);
 }

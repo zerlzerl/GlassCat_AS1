@@ -7,6 +7,7 @@ package glasscat.as1.dao.impl;
 
 import glasscat.as1.dao.Dao;
 import glasscat.as1.entity.SubTransactionEntity;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -15,5 +16,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface SubTransactionDao extends Dao<SubTransactionEntity> {
+
+    public List<SubTransactionEntity> findSubTransactionRecordsByUserId(String currentUserId);
     
 }

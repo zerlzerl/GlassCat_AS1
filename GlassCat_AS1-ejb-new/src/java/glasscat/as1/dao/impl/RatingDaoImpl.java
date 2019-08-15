@@ -39,5 +39,18 @@ public class RatingDaoImpl extends BaseDaoImpl<RatingEntity> implements RatingDa
             return found.get(0).doubleValue();
         }
     }
+
+    @Override
+    public RatingEntity findRatingBySubTransactionId(String subTransactionId) {
+        List<RatingEntity> ratingEntities;
+        ratingEntities = this.entityManager.createNamedQuery("findRatingBySubTransactionId", RatingEntity.class)
+                .setParameter("subTransactionId", subTransactionId)
+                .getResultList();
+        if(ratingEntities != null && ratingEntities.size() > 0) {
+            RatingEntity ratingEntity = ratingEntities.get(0);
+            return ratingEntity;
+        }
+        return null;
+    }
     
 }

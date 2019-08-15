@@ -17,9 +17,9 @@
         <b:container fluid="true">
             <b:row>
                 <ui:include src="/common/admin_nav.xhtml"/>
-                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+<!--                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     #{adminController.currentPage}
-                </b:column>
+                </b:column>-->
             </b:row>
         </b:container> 
         <style type="text/css">
@@ -99,39 +99,58 @@
 <!--                    <div style="margin-bottom:30px">
                         <h1 style="text-align: center">My Cart</h1>
                     </div> -->
-                    <ui:repeat var="cart" value="#{cartController.cartRecords}" varStatus="status">
-                        <b:panel title="US$#{cartController.itemEntities[status.index].price}  #{cartController.itemEntities[status.index].title}" look="Primary" collapsible="false">
+<ui:repeat var="subTransaction" value="#{historicalController.subTransactionRecords}" varStatus="status">
+                        <b:panel title="US$#{historicalController.itemEntities[status.index].price}  #{historicalController.itemEntities[status.index].title}" look="Primary" collapsible="false">
                             <b:container>
                                 <b:row>
-                                    <b:column col-md="4">
-                                        <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{cartController.itemEntities[status.index].id}">
-                                            <b:image name="itemImgThumb" value="https:#{cartController.itemEntities[status.index].imageUrlThumb}"/>
+                                    <b:column col-md="3">
+                                        <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{historicalController.itemEntities[status.index].id}">
+                                            <b:image name="itemImgThumb" value="https:#{historicalController.itemEntities[status.index].imageUrlThumb}"/>
                                         </a>
                                         </b:column>
-                                    <b:column col-md="2">
+                                    <b:column col-md="3">
                                         <div>
                                             <h5>Transaction:</h5>
-                                            <p>#{cartController.itemEntities[status.index].stock}</p>
+                                            <h:outputText value="#{historicalController.transactionEntities[status.index].transactionDatetime}" >
+                                                <f:convertDateTime pattern="yyyy-MM-dd hh:mm:ss" timeZone="GMT+8"/>
+                                            </h:outputText>
                                             <h5>Quantity:</h5>
-                                            <p>#{cartController.itemEntities[status.index].color}</p>
+                                            <h5>#{subTransaction.count}</h5>
                                         </div>
                                     </b:column>
-                                    <!--to be replaced when the item has been marked-->
-                                    <b:column col-md="6">
-                                        <p>Mark for it:</p>
+                                    <!--to be marked-->
+                                    <b:column col-md="6" rendered="#{historicalController.ratingEntities[status.index] == null}">
+                                        <p>You can mark for it:</p>
                                         <b:form>
                                             <b:panelGrid size="xs" columns="6">
-                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="1" itemValue="1" />
-                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="2" itemValue="2" />
-                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="3" itemValue="3" />
-                                                <b:radiobutton value="#{radiobuttonBean.javaVersion}" itemLabel="4" itemValue="4" disabled="true"/>
-                                                <b:radiobutton update="@form" value="#{radiobuttonBean.javaVersion}" itemLabel="5" itemValue="5" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="1" itemValue="1" required="true"/>
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="2" itemValue="2" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="3" itemValue="3" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="4" itemValue="4" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="5" itemValue="5" />
+                                            </b:panelGrid> 
+                                            <b:messages />
+                                            <b:inputTextarea placeholder="Comment here..." value="#{historicalController.comments[status.index]}">
+                                            </b:inputTextarea>
+                                            <b:commandButton action="#{historicalController.addRating(status.index)}" value="Commit" ajax="true" look="warning"/>
+                                        </b:form>
+                                    </b:column>
+                                    <!--has been marked-->
+                                    <b:column col-md="6" rendered="#{historicalController.ratingEntities[status.index] != null}">
+                                        <p>Marked.</p>
+                                        <h5>(#{historicalController.ratingDates[status.index]})</h5>
+                                        <b:form>
+                                            <b:panelGrid size="xs" columns="6">
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="1" disabled="true" itemValue="1" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="2" disabled="true" itemValue="2" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="3" disabled="true" itemValue="3" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="4" disabled="true" itemValue="4" />
+                                                <b:radiobutton value="#{historicalController.marks[status.index]}" itemLabel="5" disabled="true" itemValue="5" />
                                             </b:panelGrid>
                                             <b:messages />
-                                        
-                                            <b:inputTextarea placeholder="Comment here..." value="#{barcodeBean.nonEmptyText}">
+                                            <b:inputTextarea placeholder="Comment here..." disabled="true" value="#{historicalController.comments[status.index]}">
                                             </b:inputTextarea>
-                                            <b:commandButton value="Commit" ajax="true" look="warning"/>
+                                            <b:commandButton value="Commit" ajax="true" look="warning" disabled="true"/>
                                         </b:form>
                                     </b:column>
                                 </b:row>

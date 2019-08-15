@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
@@ -18,6 +20,9 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "as1_transaction")
+@NamedQueries({
+    @NamedQuery(name = "findTransactionRecordsByUserId", query = "SELECT t FROM TransactionEntity t WHERE t.userId=:userId order by t.transactionDatetime DESC")
+})
 public class TransactionEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
