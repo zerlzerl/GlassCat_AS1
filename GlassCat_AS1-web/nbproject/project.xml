@@ -6,12 +6,12 @@
             <name>GlassCat_AS1-web</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
-                <library dirs="100">
-                    <file>${reference.GlassCat_AS1-ejb.dist}</file>
+                <library dirs="200">
+                    <file>${file.reference.BootsFaces-OSP-1.4.1-dist.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.BootsFaces-OSP-1.4.1-dist.jar}</file>
+                    <file>${reference.GlassCat_AS1-common.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -25,12 +25,12 @@
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
             <reference>
-                <foreign-project>GlassCat_AS1-ejb</foreign-project>
+                <foreign-project>GlassCat_AS1-common</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
-                <target>dist</target>
+                <target>jar</target>
                 <clean-target>clean</clean-target>
-                <id>dist</id>
+                <id>jar</id>
             </reference>
         </references>
     </configuration>

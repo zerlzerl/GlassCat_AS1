@@ -18,7 +18,26 @@
             <b:row>
                 <ui:include src="/common/admin_nav.xhtml"/>
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    #{adminController.currentPage}
+                    <b:panel collapsible="false" look="info">
+                        <f:facet name="heading">
+                            <b:row>
+                                <b:column col-md="8">
+                                    <h:outputText class="h2" value="Transaction Management Panel"/>
+                                </b:column>
+                                <b:column col-md="4">
+                                    <h:outputText value="Email: "/>
+                                    <b:label text="#{adminController.email}" severity="success"/>
+                                    <h:outputText value=" - "/>
+                                    <h:outputText value="Membership: "/>
+                                    <b:label text="#{adminController.memberShip}" severity="primary"/>
+                                </b:column>
+                            </b:row>
+                        </f:facet>
+                        <b:container style="margin-top: 30px;">
+                                                     
+                        </b:container>
+                        
+                    </b:panel>
                 </b:column>
             </b:row>
         </b:container> 

@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package glasscat.as1.app;
+package glasscat.as1.dao.impl;
+
+import glasscat.as1.dao.Dao;
+import glasscat.as1.entity.TransactionEntity;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Li Xuekai<zerlzerl@163.com>
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+@Remote
+public interface TransactionDao extends Dao<TransactionEntity> {
     
 }

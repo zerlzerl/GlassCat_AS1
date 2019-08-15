@@ -18,7 +18,59 @@
             <b:row>
                 <ui:include src="/common/admin_nav.xhtml"/>
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    #{adminController.currentPage}
+                    <b:panel collapsible="false" look="info">
+                        <f:facet name="heading">
+                            <b:row>
+                                <b:column col-md="8">
+                                    <h:outputText class="h2" value="Item Management Panel"/>
+                                </b:column>
+                                <b:column col-md="4">
+                                    <h:outputText value="Email: "/>
+                                    <b:label text="#{adminController.email}" severity="success"/>
+                                    <h:outputText value=" - "/>
+                                    <h:outputText value="Membership: "/>
+                                    <b:label text="#{adminController.memberShip}" severity="primary"/>
+                                </b:column>
+                            </b:row>
+                        </f:facet>
+                        <b:container style="margin-top: 30px;">
+                            <b:row>
+                                <b:column offset="1" col-md="4">
+                                    <b:inputText value="" placeholder="User ID..." label="User ID:">
+                                    </b:inputText>
+                                    <b:message for="@previous"/>
+                                </b:column>
+                                <b:column offset="1" col-md="4">
+                                    <b:inputText value="" placeholder="Email..." label="User Email:"
+                                                 validator-message="Not a valid email">
+                                        <f:validateRegex pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}"/>
+                                    </b:inputText>
+                                    <b:message for="@previous"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column offset="1" col-md="4">
+                                    <b:inputText value="#{adminController.firstName}" placeholder="First Name..." label="Enter your first name:" 
+                                                 validator-message="Not a valid first name">
+                                        <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
+                                    </b:inputText>
+                                    <b:message for="@previous"/>
+                                    <!-- this pattern supports only English names -->
+                                </b:column>
+                                <b:column offset="1" col-md="4">
+                                    <b:inputText value="#{adminController.lastName}" placeholder="Last Name..." label="Enter your last name:"
+                                                 validator-message="Not a valid last name">
+                                        <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
+                                    </b:inputText>
+                                    <b:message for="@previous"/>
+                                </b:column>
+                                </b:row>
+                            <b:row><!-- row for content table -->
+                                
+                            </b:row>
+                        </b:container>
+                        
+                    </b:panel>
                 </b:column>
             </b:row>
         </b:container> 

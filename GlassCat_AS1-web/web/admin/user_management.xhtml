@@ -18,7 +18,80 @@
             <b:row>
                 <ui:include src="/common/admin_nav.xhtml"/>
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    #{adminController.currentPage}
+                    <b:panel collapsible="false" look="info">
+                        <f:facet name="heading">
+                            <b:row>
+                                <b:column col-md="8">
+                                    <h:outputText class="h2" value="Item Management Panel"/>
+                                </b:column>
+                                <b:column col-md="4">
+                                    <h:outputText value="Email: "/>
+                                    <b:label text="#{adminController.email}" severity="success"/>
+                                    <h:outputText value=" - "/>
+                                    <h:outputText value="Membership: "/>
+                                    <b:label text="#{adminController.memberShip}" severity="primary"/>
+                                </b:column>
+                            </b:row>
+                        </f:facet>
+                        <!--<b:container style="margin-top: 30px;">-->
+                            <b:form>
+                                <b:row>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{userManagementController.userId}" placeholder="User ID..." label="User ID:">
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                    </b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{userManagementController.userEmail}" placeholder="Email..." label="User Email:">
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{userManagementController.firstName}" placeholder="First Name..." label="First name:">
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                        <!-- this pattern supports only English names -->
+                                    </b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{userManagementController.lastName}" placeholder="Last Name..." label="Last name:">
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row>
+                                    <b:column offset="1" col-md="4">
+                                        <b:inputText value="#{userManagementController.phoneNo}" placeholder="Phone No..." label="Phone Number:" update="@form">
+                                        </b:inputText>
+                                        <b:message for="@previous"/>
+                                    </b:column>
+                                    <b:column offset="1" col-md="4">
+                                        <br/>
+                                        <b:commandButton value="Search Users!" look="success" style="width:100%" ajax="true" onclick="i18nBcarPool2Widget.DataTable().destroy();" action="#{userManagementController.executeSearch()}" update="dataTable"/>
+                                    </b:column>
+                                </b:row>
+                                <b:row style="margin-top: 20px;">
+                                    <b:column offset="1" col-md="9">
+                                        <b:dataTable value="#{userManagementController.resultUsers}" var="user" auto-update="true" id="dataTable">
+                                            <b:dataTableColumn label="User ID" value="#{user.id}" />
+                                            <b:dataTableColumn label="Email" value="#{user.email}" />
+                                            <b:dataTableColumn label="Last Name" value="#{user.lastName}" />
+                                            <b:dataTableColumn label="First Name" value="#{user.firstName}" />
+                                            <b:dataTableColumn label="Membership" value="#{user.membershipLevel eq 3 ? 'Administrator' : 
+                                                                                             user.membershipLevel eq 2 ? 'Manager' : 
+                                                                                             user.membershipLevel eq 1 ? 'Customer' : 'Visitor'}" />
+                                        </b:dataTable>
+                                        
+                                    </b:column>
+                                </b:row>
+                            </b:form>
+                            <b:row><!-- row for content table -->
+                                
+                            </b:row>
+                        <!--</b:container>-->
+                        
+                    </b:panel>
                 </b:column>
             </b:row>
         </b:container> 
