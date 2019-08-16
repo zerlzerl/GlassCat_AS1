@@ -9,11 +9,15 @@ import glasscat.as1.dao.impl.ItemDao;
 import glasscat.as1.dao.impl.UserDao;
 import glasscat.as1.entity.ItemEntity;
 import glasscat.as1.util.StringUtil;
+import java.awt.Color;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -60,7 +64,6 @@ public class Index extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jButton1.setText("Edit you profile!");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -176,8 +179,8 @@ public class Index extends javax.swing.JFrame {
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,22 +246,33 @@ public class Index extends javax.swing.JFrame {
         
         DefaultTableModel dtm = new DefaultTableModel();
         
-        // fill in
+        // fill in the table
+        String[][] data = new String[items.size()][4];
+        int index = 0;
         for (ItemEntity item : items) {
-            List<String> list = new ArrayList<String>();
-            list.add(item.getTitle());
-            list.add(item.getCategory());
-            list.add(new DecimalFormat("0.00").format(item.getPrice()));
-            list.add(item.getStock().toString());           
-            
-            dtm.addRow(list.toArray());
+            String[] s = new String[4];
+            s[0] = item.getTitle();
+            s[1] = item.getCategory();
+            s[2] = new DecimalFormat("0.00").format(item.getPrice());
+            s[3] = item.getStock().toString();
+            data[index] = s;
+            index += 1;
         }
-        // fresh table
-        this.jTable1.setModel(dtm);
+       
+//        System.out.println("The table has " + jTable1.getRowCount()  + "rows.");
+//        System.out.println(jTable1.getAutoCreateColumnsFromModel());
+        // Column Names 
+        String[] columnNames = { "Title", "Type", "Price","Stock" }; 
+        jTable1 = new JTable(data, columnNames); 
+        // fresh jScrollPane
+        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setBorder(new LineBorder(Color.BLACK));
+        
+     
     }//GEN-LAST:event_jButton2MouseClicked
 
-
-
+    private JTable j;
+    private JScrollPane sp;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
