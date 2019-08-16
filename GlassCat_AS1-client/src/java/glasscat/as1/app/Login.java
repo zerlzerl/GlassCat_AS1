@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 
 /**
  *
- * @author 86185
+ * @author Sun Yeqing
  */
 public class Login extends javax.swing.JFrame {
     @EJB
