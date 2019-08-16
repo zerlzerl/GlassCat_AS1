@@ -45,6 +45,7 @@
                         <b:inputText value="#{addItemController.extend3}"
                                      label="Extend field 1" render-label="true"/>
                     </b:panelGrid>  
+                    <b:commandButton value="Capture Item Information" look="info" style="width:100%; margin-bottom: 10px;" action="#{addItemController.captureInfo()}"/>
                     <b:commandButton value="Save Changes" look="success" style="width:100%" action="#{addItemController.save()}"/>
                 </b:form>
                 

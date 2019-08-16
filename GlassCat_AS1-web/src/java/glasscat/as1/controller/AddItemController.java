@@ -7,23 +7,30 @@ package glasscat.as1.controller;
 
 import glasscat.as1.dao.impl.ItemDao;
 import glasscat.as1.entity.ItemEntity;
+import glasscat.as1.entity.RatingEntity;
+import glasscat.as1.service.ItemService;
 import glasscat.as1.util.Constants;
 import glasscat.as1.util.StringUtil;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
+import javax.swing.text.html.parser.Entity;
 
 /**
  *
  * @author Li Xuekai<zerlzerl@163.com>
  */
 @Named(value = "addItemController")
-@RequestScoped
-public class AddItemController {
-@EJB
+@ViewScoped
+public class AddItemController implements Serializable{
+    @EJB
     private ItemDao itemDao;
-    
+    @EJB
+    private ItemService itemService;
     // page resources
+    private String itemId;
     private String itemURL;
     private String title;
     private String imageUrl;
@@ -43,11 +50,33 @@ public class AddItemController {
     public AddItemController() {
     }
     
-    
+    public void captureInfo(){
+        System.out.println("进来了");
+        String itemUrl = this.itemURL;
+        ItemEntity newItem = itemService.generateNewItemFromURL(itemUrl);
+        if (newItem != null) {
+            this.itemId = newItem.getId();
+            this.title = newItem.getTitle();
+            this.imageUrl = newItem.getImageUrl();
+            this.imageUrlThumb = newItem.getImageUrlThumb();
+            this.category = newItem.getCategory();
+            this.price = newItem.getPrice();
+            this.stock = newItem.getStock();
+            this.color = newItem.getColor();
+            this.style = newItem.getStyle();
+            this.season = newItem.getSeason();
+            this.extend1 = newItem.getExtend1();
+            this.extend2 = newItem.getExtend2();
+            this.extend3 = newItem.getExtend3();
+        }
+    }
     
     public String save(){
+        if (!itemService.captureRatingsAndSave(itemId).equals("success")) {
+            return null;
+        }
         ItemEntity item = new ItemEntity();
-        item.setId("");
+        item.setId(itemId);
         item.setTitle(title);
         item.setImageUrl(imageUrl);
         item.setImageUrlThumb(imageUrlThumb);
@@ -62,7 +91,7 @@ public class AddItemController {
         item.setExtend3(extend3);
         itemDao.update(item);
         System.out.println("save");
-        return "/" + Constants.DETAIL_PAGE + "?faces-redirect=true";
+        return "/" + Constants.DETAIL_PAGE + "?faces-redirect=true&productId=" + itemId;
     }
 
     public String getItemURL() {
