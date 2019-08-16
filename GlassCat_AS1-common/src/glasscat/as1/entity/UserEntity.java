@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Li Xuekai<zerlzerl@163.com>
+ * @author Sun Yeqing
  * User table corresponding entity
  */
 @Entity

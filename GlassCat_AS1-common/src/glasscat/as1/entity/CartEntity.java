@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author 86185
+ * @author Sun Yeqing
  */
 @Entity
 @Table(name = "as1_cart")

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 86185
+ * @author Sun Yeqing
  */
 public class Profile extends javax.swing.JFrame {
     private static UserDao userDao;

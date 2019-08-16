@@ -15,9 +15,10 @@ import javax.ejb.EJB;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+
 /**
  *
- * @author 86185
+ * @author Sun Yeqing
  */
 public class Login extends javax.swing.JFrame {
     @EJB

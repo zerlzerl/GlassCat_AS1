@@ -39,7 +39,7 @@ import net.bootsfaces.component.alert.Alert;
 
 /**
  *
- * @author 86185
+ * @author Sun Yeqing
  */
 @Named(value = "detailController")
 @ViewScoped

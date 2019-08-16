@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Li Xuekai<zerlzerl@163.com>
+ * @author Sun Yeqing
  */
 public class Index extends javax.swing.JFrame {
     private JFrame loginFrame;

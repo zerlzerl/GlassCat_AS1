@@ -25,7 +25,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Li Xuekai<zerlzerl@163.com>
+ * @author Sun Yeqing
  */
 @Named(value = "indexController")
 @SessionScoped
