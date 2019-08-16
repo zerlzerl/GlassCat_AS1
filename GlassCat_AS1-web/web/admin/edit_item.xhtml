@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam name="productId" value="#{editItemController.itemId}" />
+        <f:viewAction action="#{editItemController.itemSearch()}"/>
+    </f:metadata>
+    <h:head>
+        <title>Girly - Edit items</title>
+        <meta name="author" content="Li Xuekai"></meta>
+    </h:head>
+    <h:body>
+        <ui:include src="/common/navbar.xhtml"/>
+        
+        <b:container> 
+            <h2>Edit item</h2>
+            <b:jumbotron>
+                <b:form target="_blank">
+                    <b:panelGrid columns="2">
+                        <b:inputText value="#{editItemController.itemId}"
+                                     mask="999999"
+                                     label="Item ID (you can not change it)" render-label="true" disabled="true"/>
+                        <b:inputText value="#{editItemController.title}"
+                                     label="Title of item" render-label="true"/>
+                        <b:inputText value="#{editItemController.imageUrl}"
+                                     label="Full item image" render-label="true"/>
+                        <b:inputText value="#{editItemController.imageUrlThumb}"
+                                     label="Thumbnail item image" render-label="true"/>
+                        <b:inputText value="#{editItemController.category}"
+                                     label="category" render-label="true"/>
+                        <b:inputText value="#{editItemController.price}"
+                                     label="Item price" render-label="true"/>
+                        <b:inputText value="#{editItemController.stock}"
+                                     label="Stock" render-label="true"/>
+                        <b:inputText value="#{editItemController.color}"
+                                     label="Color" render-label="true"/>
+                        <b:inputText value="#{editItemController.style}"
+                                     label="Style" render-label="true"/>
+                        <b:inputText value="#{editItemController.season}"
+                                     label="Season" render-label="true"/>
+                        <b:inputText value="#{editItemController.extend1}"
+                                     label="Extend field 1" render-label="true"/>
+                        <b:inputText value="#{editItemController.extend2}"
+                                     label="Extend field 1" render-label="true"/>
+                        <b:inputText value="#{editItemController.extend3}"
+                                     label="Extend field 1" render-label="true"/>
+                    </b:panelGrid>  
+                    <b:commandButton value="Save Changes" look="success" style="width:100%" action="#{editItemController.save()}"/>
+                </b:form>
+                
+            </b:jumbotron>
+            
+        </b:container>
+        <footer style="text-align: center;">
+            <p>© Girly 2019</p>
+        </footer>
+    </h:body>
+</html>

@@ -3,16 +3,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <h:head>
-        <title>Girly - Edit items</title>
+        <title>Girly - Add items</title>
         <meta name="author" content="Li Xuekai"></meta>
     </h:head>
     <h:body>
         <ui:include src="/common/navbar.xhtml"/>
         
-        <b:container>            
+        <b:container>     
+            <h2>Add A New Item to Girly!</h2>
             <b:jumbotron>
+                <b:form target="_blank">
+                    <b:panelGrid columns="2">
+                        <b:inputText value="#{addItemController.itemURL}"
+                                     label="Item URL (capture data from Internet)" render-label="true"/>
+                        <b:inputText value="#{addItemController.title}"
+                                     label="Title of item" render-label="true"/>
+                        <b:inputText value="#{addItemController.imageUrl}"
+                                     label="Full item image" render-label="true" disabled="true"/>
+                        <b:inputText value="#{addItemController.imageUrlThumb}"
+                                     label="Thumbnail item image" render-label="true" disabled="true"/>
+                        <b:inputText value="#{addItemController.category}"
+                                     label="category" render-label="true"/>
+                        <b:inputText value="#{addItemController.price}"
+                                     label="Item price" render-label="true"/>
+                        <b:inputText value="#{addItemController.stock}"
+                                     label="Stock" render-label="true"/>
+                        <b:inputText value="#{addItemController.color}"
+                                     label="Color" render-label="true"/>
+                        <b:inputText value="#{addItemController.style}"
+                                     label="Style" render-label="true"/>
+                        <b:inputText value="#{addItemController.season}"
+                                     label="Season" render-label="true"/>
+                        <b:inputText value="#{addItemController.extend1}"
+                                     label="Extend field 1" render-label="true"/>
+                        <b:inputText value="#{addItemController.extend2}"
+                                     label="Extend field 1" render-label="true"/>
+                        <b:inputText value="#{addItemController.extend3}"
+                                     label="Extend field 1" render-label="true"/>
+                    </b:panelGrid>  
+                    <b:commandButton value="Capture Item Information" look="info" style="width:100%; margin-bottom: 10px;" action="#{addItemController.captureInfo()}"/>
+                    <b:commandButton value="Save Changes" look="success" style="width:100%" action="#{addItemController.save()}"/>
+                </b:form>
                 
             </b:jumbotron>
             
