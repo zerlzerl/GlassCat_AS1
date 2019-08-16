@@ -7,6 +7,7 @@ package glasscat.as1.dao.impl;
 
 import glasscat.as1.dao.Dao;
 import glasscat.as1.entity.TransactionEntity;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -16,4 +17,5 @@ import javax.ejb.Remote;
 @Remote
 public interface TransactionDao extends Dao<TransactionEntity> {
     public TransactionEntity findLatestTransactionByUserId(String userId);
+    public List<TransactionEntity> findLatestXTransactions(Integer x);
 }

@@ -75,7 +75,9 @@ public class LoginFilter implements Filter{
                     requestURI.contains(Constants.CART_PAGE) ||
                     requestURI.contains(Constants.HISTORY_PAGE) ||
                     requestURI.contains(Constants.ITEM_MANAGE_PAGE) ||
-                    requestURI.contains(Constants.USER_MANAGE_PAGE)) { // other page needs login
+                    requestURI.contains(Constants.USER_MANAGE_PAGE) ||
+                    requestURI.contains(Constants.TRANS_MANAGE_PAGE) ||
+                    requestURI.contains(Constants.EDIT_USER_PAGE)) { // other page needs login
                 if (loginController.isLoggedIn()) {
                     // user logged in, while an additional permision check should be performed
                     

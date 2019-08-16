@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <f:metadata>
+        <f:viewParam name="u" value="#{editUserController.userName}" />
+        <f:viewAction action="#{editUserController.excuteSearch()}"/>
+    </f:metadata>
+    <h:head>
+        <title>Girly - Edit User</title>
+        <meta name="author" content="Monica"></meta>
+    </h:head>
+    <h:body>
+        <ui:include src="/common/navbar.xhtml"/>
+        
+        <b:container>            
+            <b:jumbotron>
+                <h2>Edit User Profile</h2>
+                <h:form>
+                    <b:row>
+                        <b:column offset="1" col-md="6">
+                            <b:inputText value="#{editUserController.userfn}" placeholder="First Name..." label="First name:">
+                            </b:inputText>
+                            <b:message for="@previous"/>
+                            <!-- this pattern supports only English names -->
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column offset="1" col-md="6">
+                            <b:inputText value="#{editUserController.userln}" placeholder="Last Name..." label="Last name:">
+                            </b:inputText>
+                            <b:message for="@previous"/>
+                            <!-- this pattern supports only English names -->
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column offset="1" col-md="6">
+                            <b:inputText value="#{editUserController.address}" placeholder="Address..." label="Address:">
+                            </b:inputText>
+                            <b:message for="@previous"/>
+                            <!-- this pattern supports only English names -->
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column offset="3" col-md="4">
+                            <b:commandButton value="Save" look="success" style="width:100%" action="#{editUserController.save()}"/>
+                        </b:column>
+                    </b:row>
+                </h:form>
+                
+            </b:jumbotron>
+            
+        </b:container>
+        <footer style="text-align: center;">
+            <p>© Girly 2019</p>
+        </footer>
+    </h:body>
+</html>

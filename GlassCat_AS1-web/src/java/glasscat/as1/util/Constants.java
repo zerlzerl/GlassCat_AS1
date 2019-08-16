@@ -22,6 +22,7 @@ public interface Constants {
     String TRANS_MANAGE_PAGE = "admin/transaction_management.jsf";
     String ITEM_MANAGE_PAGE = "admin/item_management.jsf";
     String USER_MANAGE_PAGE = "admin/user_management.jsf";
+    String EDIT_USER_PAGE = "admin/edit_user.jsf";
     
     String ERROR_PAGE = "500.xhtml";  //500 error
     String ACCESS_DENIED_PAGE = "403.xhtml";  // 403 forbidden page

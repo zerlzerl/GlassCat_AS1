@@ -89,9 +89,7 @@
                                                 </b:commandButton>
                                             </b:dataTableColumn>
                                             <b:dataTableColumn label="Edit" rendered="#{loginController.membershipLevel gt 1}"><!-- manager and administrator -->
-                                                <b:commandButton value="Edit" ajax="true" look="primary"
-                                                                 onclick="ajax:userManagementController.searchInfo(user.id);javascript:setTimeout(function(){ $('.modalPseudoClass2').modal('show'); }, 1000);javascript:return false;" >
-                                                </b:commandButton>
+                                                    <b:commandButton  value="Edit" look="primary" action="#{userManagementController.editUserPage(user.userName)}"></b:commandButton>                                                
                                             </b:dataTableColumn>                                            
                                             
                                             <b:dataTableColumn label="Upgrade" rendered="#{loginController.membershipLevel gt 1}"><!-- manager and administrator -->

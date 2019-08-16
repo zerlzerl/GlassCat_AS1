@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Girly - Index</title>
         <meta name="author" content="Monica"></meta>
@@ -17,12 +18,48 @@
             </b:jumbotron>
             <b:jumbotron>
                 <b:row>
-                    <h1>Similarity Recomendation</h1>
+                    <h3>Guess you like</h3>
+                    <b:row>
+                        <ui:repeat var="item" value="#{indexController.similarityRecomandation}" varStatus="status">
+                            <b:column col-md="3" col-sm="4" col-xs="12">
+                                <b:thumbnail>
+                                    <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
+                                        <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
+                                        <p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
+<!--                                        <p style="font-family: Monospaced">Mark: 
+                                            <h:outputText value="#{searchController.itemMarks[status.index]}">
+                                                <f:convertNumber pattern="#0.00"/>
+                                            </h:outputText>
+                                        </p>-->
+                                    </a>
+                                    <strong>US$#{item.price}</strong>
+                                </b:thumbnail>
+                            </b:column>
+                        </ui:repeat>
+                    </b:row>
                 </b:row>
             </b:jumbotron>
             <b:jumbotron>
                 <b:row>
-                    <h1>Collaborative Filter</h1>
+                    <h3>They are buying</h3>
+                    <b:row>
+                        <ui:repeat var="item" value="#{indexController.collaborativeFilter}" varStatus="status">
+                            <b:column col-md="3" col-sm="4" col-xs="12">
+                                <b:thumbnail>
+                                    <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
+                                        <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
+                                        <p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
+<!--                                        <p style="font-family: Monospaced">Mark: 
+                                            <h:outputText value="#{searchController.itemMarks[status.index]}">
+                                                <f:convertNumber pattern="#0.00"/>
+                                            </h:outputText>
+                                        </p>-->
+                                    </a>
+                                    <strong>US$#{item.price}</strong>
+                                </b:thumbnail>
+                            </b:column>
+                        </ui:repeat>
+                    </b:row>
                 </b:row>
             </b:jumbotron>
         </b:container>

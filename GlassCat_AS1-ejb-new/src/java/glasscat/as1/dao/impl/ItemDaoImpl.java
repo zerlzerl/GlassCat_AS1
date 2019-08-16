@@ -65,5 +65,11 @@ public class ItemDaoImpl extends BaseDaoImpl<ItemEntity> implements ItemDao {
         
         return q.getResultList();
     }
+
+    @Override
+    public List<ItemEntity> findX(Integer x) {
+        return this.entityManager.createQuery("SELECT i FROM ItemEntity i", ItemEntity.class)
+                .setMaxResults(x).getResultList();
+    }
     
 }

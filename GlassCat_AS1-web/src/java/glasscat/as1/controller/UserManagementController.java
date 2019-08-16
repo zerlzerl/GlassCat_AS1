@@ -127,7 +127,10 @@ public class UserManagementController implements Serializable{
             }
         }
     }
-
+    
+    public String editUserPage(String userName){
+        return "/" + Constants.EDIT_USER_PAGE + "?faces-redirect=true&u=" + userName;
+    }
     public String getUserNameForModal() {
         return userNameForModal;
     }

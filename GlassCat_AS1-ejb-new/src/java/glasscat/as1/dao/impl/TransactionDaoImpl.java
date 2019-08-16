@@ -31,5 +31,11 @@ public class TransactionDaoImpl extends BaseDaoImpl<TransactionEntity> implement
             return null;
         }
     }
+
+    @Override
+    public List<TransactionEntity> findLatestXTransactions(Integer x) {
+        return this.entityManager.createQuery("SELECT t FROM TransactionEntity t ORDER BY T.transactionDatetime DESC", TransactionEntity.class)
+                .setMaxResults(x).getResultList();
+    }
     
 }
