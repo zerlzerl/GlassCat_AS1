@@ -22,7 +22,6 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class ItemManageController implements Serializable{
     private List<ItemEntity> allItems;
-    private boolean [] editableList;
     @EJB private ItemDao itemDao;
     /**
      * Creates a new instance of ItemManageController
@@ -33,18 +32,16 @@ public class ItemManageController implements Serializable{
     @PostConstruct
     public void init(){
         this.allItems = itemDao.findAll();
-        this.editableList = new boolean[this.allItems.size()];
-        for (int i = 0 ; i < this.allItems.size(); i ++) {
-            this.editableList[i] = false;
-        }
+    }
+    
+    public void delete(String itemId){
+        System.out.println("delete: " + itemId);
+        itemDao.deleteById(itemId);
+        this.allItems = itemDao.findAll();
     }
     
     public List<ItemEntity> getAllItems() {
         return allItems;
-    }
-
-    public boolean[] getEditableList() {
-        return editableList;
     }
     
 }

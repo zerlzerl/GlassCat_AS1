@@ -33,33 +33,38 @@
                                 </b:column>
                             </b:row>
                         </f:facet>
-                        <b:form>                            
+                        <b:form>      
+                            <b:row style="margin-top: 20px;">
+                                <b:column offset="8" span="2">
+                                    <b:link value="Add a new item" icon="plus-sign" look="success" style-class="some-class" target="_blank" href="#{request.contextPath}/admin/add_item.jsf" />
+                                </b:column>
+                            </b:row>
                             <b:row style="margin-top: 20px;">
                                 <b:column col-md="10">
                                     <b:dataTable value="#{itemManageController.allItems}" var="item" auto-update="true" class="editItemTable">
-                                        <b:dataTableColumn label="Item ID" value="#{item.id}" />
-                                        <b:dataTableColumn label="Image">
+                                        <b:dataTableColumn label="Item ID" value="#{item.id}"/>
+                                        <b:dataTableColumn label="Image" width="10%">
                                             <b:thumbnail>
                                                 <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
-                                                    <b:image name="itemImg" value="https:#{item.imageUrlThumb}" style="width: 50%; height: 50%"/>
+                                                    <b:image name="itemImg" value="https:#{item.imageUrlThumb}"/>
                                                 </a>
                                             </b:thumbnail>
                                         </b:dataTableColumn>
-                                        <b:dataTableColumn label="Title" value="#{item.title}" />
-                                        <b:dataTableColumn label="Category" value="#{item.category}" />
-                                        <b:dataTableColumn label="Price ($)" value="#{item.price}" />                                        
-                                        <b:dataTableColumn label="Color" value="#{item.color}" />
-                                        <b:dataTableColumn label="Style" value="#{item.style}" />
-                                        <b:dataTableColumn label="Season" value="#{item.season}" />
-                                        <b:dataTableColumn label="Stock">
-                                            <b:inputText value="#{item.stock}" rendered="#{item.editable}" />
-                                            <h:outputText value="#{item.stock}" rendered="#{not item.editable}" />
+                                        <b:dataTableColumn label="Title" value="#{item.title}"/>
+                                        <b:dataTableColumn label="Category" value="#{item.category}"/>
+                                        <b:dataTableColumn label="Price ($)" value="#{item.price}"/>                                        
+                                        <b:dataTableColumn label="Color" value="#{item.color}"/>
+                                        <b:dataTableColumn label="Style" value="#{item.style}"/>
+                                        <b:dataTableColumn label="Season" value="#{item.season}"/>
+                                        <b:dataTableColumn label="Stock" value="#{item.stock}"/>
+                                        <b:dataTableColumn label="Edit">
+                                            <b:link value="Edit" icon="edit" look="info" style-class="some-class" target="_blank" href="#{request.contextPath}/admin/edit_item.jsf?productId=#{item.id}" />
                                         </b:dataTableColumn>
-                                        <b:dataTableColumn>
-                                            <b:commandButton value="edit" icon="edit" ajax="true" update="@(.editItemTable)"
-                                                             onclick="ajax:item.edit(); javascript:return false;" >
+                                        <b:dataTableColumn label="Delete">
+                                            <b:commandButton value="Delete" iconAwesome="trash" look="danger" ajax="true" update="@(usersTable)"
+                                                             onclick="ajax:itemManageController.delete(item.id); javascript:return false;" >
+                                                <f:ajax execute="@this" render="@form" />
                                             </b:commandButton>
-
                                         </b:dataTableColumn>
                                     </b:dataTable>
 
