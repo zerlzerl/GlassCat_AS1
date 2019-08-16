@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author zerlz
+ * @author Li Xuekai<zerlzerl@163.com>
  * @param <T>
  */
 public interface Dao<T extends Serializable>{

@@ -10,7 +10,7 @@ import javax.enterprise.context.RequestScoped;
 
 /**
  *
- * @author Li Xuekai<zerlzerl@163.com>
+ * @author Sun Yeqing
  */
 @Named(value = "resultController")
 @RequestScoped

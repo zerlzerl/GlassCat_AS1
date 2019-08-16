@@ -7,7 +7,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Girly - Item Management</title>
-        <meta name="author" content="Monica"></meta>
+        <meta name="author" content="Li Xuekai"></meta>
         
     </h:head>
     <h:body>
@@ -33,42 +33,40 @@
                                 </b:column>
                             </b:row>
                         </f:facet>
-                        <b:container style="margin-top: 30px;">
-                            <b:row>
-                                <b:column offset="1" col-md="4">
-                                    <b:inputText value="" placeholder="User ID..." label="User ID:">
-                                    </b:inputText>
-                                    <b:message for="@previous"/>
-                                </b:column>
-                                <b:column offset="1" col-md="4">
-                                    <b:inputText value="" placeholder="Email..." label="User Email:"
-                                                 validator-message="Not a valid email">
-                                        <f:validateRegex pattern="\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}"/>
-                                    </b:inputText>
-                                    <b:message for="@previous"/>
+                        <b:form>                            
+                            <b:row style="margin-top: 20px;">
+                                <b:column col-md="10">
+                                    <b:dataTable value="#{itemManageController.allItems}" var="item" auto-update="true" class="editItemTable">
+                                        <b:dataTableColumn label="Item ID" value="#{item.id}" />
+                                        <b:dataTableColumn label="Image">
+                                            <b:thumbnail>
+                                                <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
+                                                    <b:image name="itemImg" value="https:#{item.imageUrlThumb}" style="width: 50%; height: 50%"/>
+                                                </a>
+                                            </b:thumbnail>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Title" value="#{item.title}" />
+                                        <b:dataTableColumn label="Category" value="#{item.category}" />
+                                        <b:dataTableColumn label="Price ($)" value="#{item.price}" />                                        
+                                        <b:dataTableColumn label="Color" value="#{item.color}" />
+                                        <b:dataTableColumn label="Style" value="#{item.style}" />
+                                        <b:dataTableColumn label="Season" value="#{item.season}" />
+                                        <b:dataTableColumn label="Stock">
+                                            <b:inputText value="#{item.stock}" rendered="#{item.editable}" />
+                                            <h:outputText value="#{item.stock}" rendered="#{not item.editable}" />
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn>
+                                            <b:commandButton value="edit" icon="edit" ajax="true" update="@(.editItemTable)"
+                                                             onclick="ajax:item.edit(); javascript:return false;" >
+                                            </b:commandButton>
+
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
                                 </b:column>
                             </b:row>
-                            <b:row>
-                                <b:column offset="1" col-md="4">
-                                    <b:inputText value="#{adminController.firstName}" placeholder="First Name..." label="Enter your first name:" 
-                                                 validator-message="Not a valid first name">
-                                        <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
-                                    </b:inputText>
-                                    <b:message for="@previous"/>
-                                    <!-- this pattern supports only English names -->
-                                </b:column>
-                                <b:column offset="1" col-md="4">
-                                    <b:inputText value="#{adminController.lastName}" placeholder="Last Name..." label="Enter your last name:"
-                                                 validator-message="Not a valid last name">
-                                        <f:validateRegex pattern="^[A-Z][a-zA-Z]+$"/>
-                                    </b:inputText>
-                                    <b:message for="@previous"/>
-                                </b:column>
-                                </b:row>
-                            <b:row><!-- row for content table -->
-                                
-                            </b:row>
-                        </b:container>
+
+                        </b:form>
                         
                     </b:panel>
                 </b:column>

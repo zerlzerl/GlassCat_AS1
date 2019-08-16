@@ -7,7 +7,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Girly - Transaction Management</title>
-        <meta name="author" content="Monica"></meta>
+        <meta name="author" content="Li Xuekai"></meta>
         
     </h:head>
     <h:body>
@@ -33,9 +33,25 @@
                                 </b:column>
                             </b:row>
                         </f:facet>
-                        <b:container style="margin-top: 30px;">
-                                                     
-                        </b:container>
+                        <b:form>                            
+                            <b:row style="margin-top: 20px;">
+                                <b:column col-md="10">
+                                    <b:dataTable value="#{transManageController.transList}" var="transaction" auto-update="true" id="transTable">
+                                        <b:dataTableColumn label="Transaction ID" value="#{transaction.transId}" />
+                                        <b:dataTableColumn label="Datetime" value="#{transaction.transDateTime}" />
+                                        <b:dataTableColumn label="Subtransaction ID" value="#{transaction.subtransId}" />
+                                        <b:dataTableColumn label="Buyer Name" value="#{transaction.userName}" />
+                                        <b:dataTableColumn label="Buyer Email" value="#{transaction.userEmail}" />
+                                        <b:dataTableColumn label="Item ID" value="#{transaction.itemId}" />
+                                        <b:dataTableColumn label="Item Title">
+                                             <b:link style-class="some-class" target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{transaction.itemId}" value="#{transaction.itemTitle}" />
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
+                                </b:column>
+                            </b:row>
+
+                        </b:form>
                         
                     </b:panel>
                 </b:column>

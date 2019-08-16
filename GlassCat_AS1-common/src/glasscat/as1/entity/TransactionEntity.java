@@ -16,7 +16,7 @@ import javax.persistence.NamedQuery;
 
 /**
  *
- * @author Li Xuekai<zerlzerl@163.com>
+ * @author Sun Yeqing
  */
 @Entity
 @Table(name = "as1_transaction")

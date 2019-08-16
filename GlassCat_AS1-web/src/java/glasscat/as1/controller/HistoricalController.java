@@ -26,7 +26,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author 86185
+ * @author Sun Yeqing
  */
 @Named(value = "historicalController")
 @RequestScoped

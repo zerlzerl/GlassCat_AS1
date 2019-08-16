@@ -39,7 +39,7 @@ import net.bootsfaces.component.alert.Alert;
 
 /**
  *
- * @author 86185
+ * @author Sun Yeqing
  */
 @Named(value = "detailController")
 @ViewScoped
@@ -89,7 +89,11 @@ public class DetailController implements Serializable {
         if(ratings != null && ratings.size() != 0) {
             for(RatingEntity r : ratings) {
             UserEntity u = userDao.findById(r.getUserId());
-            usernames.add(u.getUserName());
+            if (u == null ) {
+                usernames.add("Anonymous");
+            } else {
+                usernames.add(u.getUserName());
+            }
             sum += r.getMark();
         }
         this.averageMark = sum / ratings.size();
