@@ -18,5 +18,5 @@ import javax.ejb.Remote;
 public interface ItemDao extends Dao<ItemEntity> { 
     public List<ItemEntity> findByTitleLike(String queryStr);
     public List<ItemEntity> findByAttributesLike(String queryStr);
-    
+    public List<ItemEntity> findBy3Attributes(String title, String type, Double low, Double high);
 }
