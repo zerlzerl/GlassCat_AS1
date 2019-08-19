@@ -803,19 +803,27 @@ exists or setup the property manually. For example like this:
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
         <copyfiles files="${file.reference.fastjson-1.2.58.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${reference.GlassCat_AS1-common.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.javaee-api-7.0.classpath}" todir="${build.classes.dir}"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${file.reference.fastjson-1.2.58.jar}" property="manifest.file.reference.fastjson-1.2.58.jar"/>
         <basename file="${reference.GlassCat_AS1-common.jar}" property="manifest.reference.GlassCat_AS1-common.jar"/>
+        <basename file="${libs.javaee-api-7.0.classpath}" property="manifest.libs.javaee-api-7.0.classpath"/>
+        <basename file="${libs.eclipselink.classpath}" property="manifest.libs.eclipselink.classpath"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.fastjson-1.2.58.jar}"/>
             <attribute name="jar-2-Extension-Name" value="${manifest.reference.GlassCat_AS1-common.jar}"/>
+            <attribute name="jar-3-Extension-Name" value="${manifest.libs.javaee-api-7.0.classpath}"/>
+            <attribute name="jar-4-Extension-Name" value="${manifest.libs.eclipselink.classpath}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${file.reference.fastjson-1.2.58.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.GlassCat_AS1-common.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.javaee-api-7.0.classpath}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
