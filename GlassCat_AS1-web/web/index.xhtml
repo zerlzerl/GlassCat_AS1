@@ -48,7 +48,7 @@
                                 <b:thumbnail>
                                     <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
                                         <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
-                                        <p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
+                                        <p style="font-family: Monospaced; font-size: 14px;">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
 <!--                                        <p style="font-family: Monospaced">Mark: 
                                             <h:outputText value="#{searchController.itemMarks[status.index]}">
                                                 <f:convertNumber pattern="#0.00"/>

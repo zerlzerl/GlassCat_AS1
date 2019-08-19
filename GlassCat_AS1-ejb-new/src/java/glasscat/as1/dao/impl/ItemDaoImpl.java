@@ -71,5 +71,74 @@ public class ItemDaoImpl extends BaseDaoImpl<ItemEntity> implements ItemDao {
         return this.entityManager.createQuery("SELECT i FROM ItemEntity i", ItemEntity.class)
                 .setMaxResults(x).getResultList();
     }
+
+    @Override
+    public List<ItemEntity> findByAttributesLikeWithCritiria(String queryStr, String[] categories, String[] colors, String[] styles, String[] seasons) {
+        StringBuffer queryJPQL = new StringBuffer("select i from ItemEntity i where (CONCAT(UPPER(i.title),UPPER(i.category),UPPER(i.color),UPPER(i.style),UPPER(i.season)) LIKE CONCAT('%',UPPER('" + queryStr + "'),'%'))");
+        if (categories != null) {
+            queryJPQL.append(" AND (");
+            for (int i = 0; i < categories.length; i++) {
+                queryJPQL.append(" i.category='");
+                queryJPQL.append(categories[i]);
+                queryJPQL.append("'");
+                if (i != categories.length -1) queryJPQL.append(" OR ");                
+            }
+            queryJPQL.append(" ) ");
+        }
+        if (colors != null) {
+            queryJPQL.append(" AND (");
+            for (int i = 0; i < colors.length; i++) {
+                queryJPQL.append(" i.color='");
+                queryJPQL.append(colors[i]);
+                queryJPQL.append("'");
+                if (i != colors.length -1) queryJPQL.append(" OR ");                
+            }
+            queryJPQL.append(" ) ");
+        }
+        if (styles != null) {
+            queryJPQL.append(" AND (");
+            for (int i = 0; i < styles.length; i++) {
+                queryJPQL.append(" i.style='");
+                queryJPQL.append(styles[i]);
+                queryJPQL.append("'");
+                if (i != styles.length -1) queryJPQL.append(" OR ");                
+            }
+            queryJPQL.append(" ) ");
+        }
+        if (seasons != null) {
+            queryJPQL.append(" AND (");
+            for (int i = 0; i < seasons.length; i++) {
+                queryJPQL.append(" i.season='");
+                queryJPQL.append(seasons[i]);
+                queryJPQL.append("'");
+                if (i != seasons.length -1) queryJPQL.append(" OR ");                
+            }
+            queryJPQL.append(" ) ");
+        }
+        
+        String qeuryString = queryJPQL.toString();
+        System.out.println(qeuryString);
+        return this.entityManager.createQuery(qeuryString, ItemEntity.class).getResultList();
+    }
+
+    @Override
+    public List<String> findAllStyles() {
+        return this.entityManager.createQuery("SELECT DISTINCT(i.style) from ItemEntity i", String.class).getResultList();
+    }
+
+    @Override
+    public List<String> findAllColors() {
+        return this.entityManager.createQuery("SELECT DISTINCT(i.color) from ItemEntity i", String.class).getResultList();
+    }
+
+    @Override
+    public List<String> findAllCategories() {
+        return this.entityManager.createQuery("SELECT DISTINCT(i.category) from ItemEntity i", String.class).getResultList();
+    }
+
+    @Override
+    public List<String> findAllSeasons() {
+        return this.entityManager.createQuery("SELECT DISTINCT(i.season) from ItemEntity i", String.class).getResultList();
+    }
     
 }
