@@ -20,4 +20,10 @@ public interface ItemDao extends Dao<ItemEntity> {
     public List<ItemEntity> findByAttributesLike(String queryStr);
     public List<ItemEntity> findBy3Attributes(String title, String type, Double low, Double high);
     public List<ItemEntity> findX(Integer x);
+    public List<ItemEntity> findByAttributesLikeWithCritiria(String queryStr, String[] categories, String[] colors, String[] styles, String[] seasons);
+    public List<String> findAllStyles();
+    public List<String> findAllColors();
+    public List<String> findAllCategories();
+    public List<String> findAllSeasons();
+    
 }

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
@@ -28,7 +29,7 @@ import javax.inject.Inject;
  * @author Sun Yeqing
  */
 @Named(value = "indexController")
-@SessionScoped
+@RequestScoped
 public class IndexController implements Serializable {
     private List<ItemEntity> similarityRecomandation;
     private List<ItemEntity> collaborativeFilter;

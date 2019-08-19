@@ -9,11 +9,13 @@ import glasscat.as1.dao.impl.UserDao;
 import glasscat.as1.entity.UserEntity;
 import glasscat.as1.session.AdminSession;
 import glasscat.as1.util.Constants;
+import glasscat.as1.util.SHAUtil;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Specializes;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
@@ -43,7 +45,7 @@ public class LoginController extends AdminSession implements Serializable {
         
     }
     
-    public void loginValidator(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+    public void loginValidator(FacesContext context, UIComponent component, Object value) throws ValidatorException, NoSuchAlgorithmException {
         UIInput loginProofComponent = (UIInput) component.getAttributes().get("loginProofComponent");
         String proof = (String) loginProofComponent.getValue();
         String passwd = (String) value;
@@ -73,7 +75,8 @@ public class LoginController extends AdminSession implements Serializable {
         if (users != null && users.size() > 0) {
             // search a existing user
             UserEntity u = users.get(0);
-            if (u.getPassword().equals(passwd)) {
+            String hasedPassword = SHAUtil.toHexString(SHAUtil.getSHA(passwd + u.getSalt()));
+            if (u.getPassword().equals(hasedPassword)) {
                 // success
                 this.email = u.getEmail() == null ? null : u.getEmail();
                 this.userName = u.getUserName() == null ? null : u.getUserName();

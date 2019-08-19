@@ -9,9 +9,13 @@ import glasscat.as1.dao.impl.UserDao;
 import glasscat.as1.entity.UserEntity;
 import glasscat.as1.util.Constants;
 import glasscat.as1.util.IDUtil;
+import glasscat.as1.util.SHAUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
@@ -42,13 +46,16 @@ public class RegisterController implements Serializable {
     public RegisterController() {
     }
     
-    public String signUp() {
+    public String signUp() throws NoSuchAlgorithmException {
         // validation complete
         UserEntity newUser = new UserEntity();
         String newUserId = IDUtil.getUUID();
+        String salt = IDUtil.getUUID();
+        String hashedPasswd = SHAUtil.toHexString(SHAUtil.getSHA(password + salt));
+        newUser.setSalt(salt);
         newUser.setId(newUserId);
         newUser.setEmail(email);
-        newUser.setPassword(password);
+        newUser.setPassword(hashedPasswd);
         newUser.setMembershipLevel(0);
         userDao.save(newUser);
         System.out.println("New user register! email: " + email + ".");

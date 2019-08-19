@@ -7,6 +7,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
         <f:viewParam name="s" value="#{searchController.searchStr}" />
+        <f:viewParam name="category" value="#{searchController.category}" />
+        <f:viewParam name="style" value="#{searchController.style}" />
+        <f:viewParam name="color" value="#{searchController.color}" />
+        <f:viewParam name="season" value="#{searchController.season}" />
         <f:viewAction action="#{searchController.excuteSearch()}"/>
     </f:metadata>
     <h:head>
@@ -22,71 +26,50 @@
         <b:container>
             <b:jumbotron>
                 <div style="margin-bottom:30px">
-                    <ui:include src="/common/search.xhtml"/>
-                </div>
-                
-                <div style="padding-top: 20px; padding-left: 40px"> 
-                    <h:form>
+                    <h:form target="_blank">
                         <b:container>
-                            <b:row>
+                            <h1 style="text-align: center">Girly</h1>
+                            <div style="padding-left: 30px;">
+                                <b:inputText placeholder="Search Girly clothes by name, color, style, and season..."  value="#{searchController.searchStr}" col-md="10" field-size="lg"/>            
+                            </div>        
+                            <b:commandButton value="Search" icon="search" look="success" size="lg" action="#{searchController.resultPage}"/>        
+
+                            <b:row style="margin-left: 30px;">
                                 <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Category:</p>
-                                        <b:selectMultiMenu value="category" id="categoryId">
-                                            <f:selectItem itemLabel="T-shirts" itemValue="1"/>
-                                            <f:selectItem itemLabel="dresses" itemValue="2"/>
-                                            <f:selectItem itemLabel="sweatshirts" itemValue="3"/>
-                                            <f:selectItem itemLabel="sweaters" itemValue="4"/>
-                                            <f:selectItem itemLabel="skirts" itemValue="5"/>
-                                            <f:selectItem itemLabel="jeans" itemValue="6"/>
+                                        <b:selectMultiMenu value="#{searchController.category}">
+                                            <f:selectItems value="#{searchController.categorylList}" var="category" itemValue="#{category}" itemLabel="#{category}"/>
                                         </b:selectMultiMenu>
-                                        <h:message for="categoryId"/>
                                     </b:panelGrid>
                                 </b:column>
                                 <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Style:</p>
-                                        <b:selectMultiMenu value="style" id="styleId">
-                                            <f:selectItem itemLabel="casual" itemValue="1"/>
-                                            <f:selectItem itemLabel="boho" itemValue="2"/>
-                                            <f:selectItem itemLabel="sexy" itemValue="3"/>
-                                            <f:selectItem itemLabel="glamorous" itemValue="4"/>
-                                            <f:selectItem itemLabel="sporty" itemValue="5"/>
-                                            <f:selectItem itemLabel="others" itemValue="6"/>
+                                        <b:selectMultiMenu value="#{searchController.style}">
+                                            <f:selectItems value="#{searchController.styleList}" var="style" itemValue="#{style}" itemLabel="#{style}"/>
                                         </b:selectMultiMenu>
-                                        <h:message for="styleId"/>
                                     </b:panelGrid>
                                 </b:column>
-                                <b:column col-md="2">
-                                     <b:commandButton action="a" value="Filter!" size="lg"/>
-                                </b:column>
+<!--                                <b:column col-md="2">
+                                    <b:commandButton action="#{searchController.resultPage()}" value="Filter!" size="lg"/>
+                                </b:column>-->
                             </b:row>
-                            <b:row>
+                            <b:row style="margin-left: 30px;">
                                 <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Color:</p>
-                                        <b:selectMultiMenu value="color" id="colorId">
-                                            <f:selectItem itemLabel="black" itemValue="1"/>
-                                            <f:selectItem itemLabel="white" itemValue="2"/>
-                                            <f:selectItem itemLabel="pink" itemValue="3"/>
-                                            <f:selectItem itemLabel="blue" itemValue="4"/>
-                                            <f:selectItem itemLabel="grey" itemValue="5"/>
-                                            <f:selectItem itemLabel="red" itemValue="6"/>
-                                            <f:selectItem itemLabel="others" itemValue="7"/>
+                                        <b:selectMultiMenu value="#{searchController.color}">
+                                            <f:selectItems value="#{searchController.colorList}" var="color" itemValue="#{color}" itemLabel="#{color}"/>
                                         </b:selectMultiMenu>
-                                        <h:message for="colorId"/>
                                     </b:panelGrid>
                                 </b:column>
                                 <b:column col-md="5">
                                     <b:panelGrid colSpans="3,9">
                                         <p>Season:</p>
-                                        <b:selectMultiMenu value="season" id="seasonId">
-                                            <f:selectItem itemLabel="spring" itemValue="1"/>
-                                            <f:selectItem itemLabel="summer" itemValue="2"/>
-                                            <f:selectItem itemLabel="fall" itemValue="3"/>
-                                            <f:selectItem itemLabel="winter" itemValue="4"/>
+                                        <b:selectMultiMenu value="#{searchController.season}">
+                                            <f:selectItems value="#{searchController.seasonList}" var="season" itemValue="#{season}" itemLabel="#{season}"/>
                                         </b:selectMultiMenu>
-                                        <h:message for="seasonId"/>
                                     </b:panelGrid>
                                 </b:column>
                             </b:row>
@@ -104,8 +87,8 @@
                         <b:thumbnail>
                             <a target="_blank" href="#{request.contextPath}/detail.jsf?productId=#{item.id}">
                                 <b:image name="itemImg" value="https:#{item.imageUrlThumb}" />
-                                <p style="font-family: Monospaced">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
-                                <p style="font-family: Monospaced">Mark: 
+                                <p style="font-family: Monospaced; font-size: 14px;">#{item.title.length() gt 35 ? item.title.substring(0,32).concat('...') : item.title}</p>
+                                <p style="font-family: Monospaced; font-size: 14px;">Mark: 
                                     <h:outputText value="#{searchController.itemMarks[status.index]}">
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>

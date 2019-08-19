@@ -37,6 +37,8 @@ public class UserEntity implements Serializable {
     private String userName;    
     @Column(name = "password", length = 255, nullable = false)
     private String password;    
+    @Column(name = "salt", length = 255, nullable = false)
+    private String salt;    
     @Column(name = "membership_level", nullable = false)
     private Integer membershipLevel;
     @Column(name = "last_name", length = 255)
@@ -86,6 +88,15 @@ public class UserEntity implements Serializable {
         this.email = email;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+    
+    
     public String getUserName() {
         return userName;
     }
